@@ -1,0 +1,784 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, #ff4f9130, transparent 30%),
+        radial-gradient(circle at 80% 80%, #7b5cff35, transparent 30%),
+        #080817;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ================= HALAMAN INPUT ================= */
+
+#inputPage {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 30% 30%, #ff5c9d25, transparent 35%),
+        radial-gradient(circle at 70% 70%, #705cff25, transparent 35%),
+        #080817;
+    transition: 1s ease;
+}
+
+#inputPage.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+}
+
+.input-box {
+    width: min(450px, 100%);
+    padding: 40px 30px;
+    border: 1px solid #ffffff18;
+    border-radius: 30px;
+    background: #ffffff0c;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 80px #0008;
+    animation: muncul 1s ease;
+}
+
+.gift {
+    font-size: 75px;
+    animation: bounce 1.5s infinite;
+}
+
+.input-box h1 {
+    margin: 20px 0 10px;
+    font-size: 38px;
+    background: linear-gradient(90deg, #ff70ad, white, #9c8aff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.input-box p {
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+.name-input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid #ffffff20;
+    outline: none;
+    border-radius: 15px;
+    background: #00000035;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.name-input::placeholder {
+    color: #888;
+}
+
+.name-input:focus {
+    border-color: #ff70ad;
+    box-shadow: 0 0 20px #ff70ad25;
+}
+
+.start-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff4f91, #805dff);
+    box-shadow: 0 10px 30px #ff4f9140;
+    transition: .3s;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+}
+
+.error {
+    color: #ff6f91;
+    font-size: 13px;
+    margin-bottom: 12px;
+    display: none;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.hero-content {
+    animation: muncul 1.5s ease;
+}
+
+.small {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ff78b0;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 10vw, 90px);
+    margin: 20px 0;
+    line-height: 1;
+    background: linear-gradient(90deg, #ff70ad, white, #9b8aff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+#namaTampil {
+    font-size: clamp(30px, 7vw, 55px);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+/* ================= FOTO ================= */
+
+.photo-section {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.photo-card {
+    width: min(350px, 90%);
+    margin: auto;
+    padding: 10px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff5b9d, #7564ff);
+    box-shadow: 0 20px 60px #0008;
+    transform: rotate(-2deg);
+    transition: .5s;
+}
+
+.photo-card:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+
+.photo-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
+.photo-section h2 {
+    margin-top: 30px;
+}
+
+/* ================= PESAN ================= */
+
+.message {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.message-card {
+    width: min(750px, 95%);
+    padding: 40px;
+    border-radius: 30px;
+    background: #ffffff0a;
+    border: 1px solid #ffffff12;
+    backdrop-filter: blur(15px);
+    text-align: center;
+    box-shadow: 0 20px 70px #0005;
+}
+
+.message-card h2 {
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.message-card p {
+    color: #ddd;
+    line-height: 2;
+}
+
+/* ================= WISH ================= */
+
+.wishes {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.wishes h2 {
+    font-size: 38px;
+    margin-bottom: 40px;
+}
+
+.wish-container {
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.wish {
+    padding: 30px 20px;
+    border-radius: 25px;
+    background: #ffffff0a;
+    border: 1px solid #ffffff10;
+    transition: .4s;
+}
+
+.wish:hover {
+    transform: translateY(-8px);
+}
+
+.icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.wish p {
+    color: #aaa;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    color: #777;
+}
+
+footer span {
+    color: #ff70ad;
+}
+
+/* ================= MUSIC ================= */
+
+.music-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff5c9d, #795dff);
+    color: white;
+    font-size: 20px;
+}
+
+/* ================= BALLOON ================= */
+
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    width: 42px;
+    height: 55px;
+    border-radius: 50%;
+    z-index: 20;
+    pointer-events: none;
+    animation: terbang linear forwards;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 70px;
+    background: #ffffff80;
+    top: 53px;
+    left: 50%;
+}
+
+/* ================= CONFETTI ================= */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 8px;
+    height: 15px;
+    z-index: 999;
+    pointer-events: none;
+    animation: jatuh linear forwards;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes terbang {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+    }
+}
+
+@keyframes jatuh {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media(max-width:600px) {
+
+    .input-box {
+        padding: 35px 22px;
+    }
+
+    .input-box h1 {
+        font-size: 32px;
+    }
+
+    .message-card {
+        padding: 30px 20px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= INPUT NAMA ================= -->
+
+<div id="inputPage">
+
+    <div class="input-box">
+
+        <div class="gift">🎁</div>
+
+        <h1>Birthday Surprise</h1>
+
+        <p>
+            Sebelum membuka kejutan,<br>
+            masukkan namamu dulu ✨
+        </p>
+
+        <input
+            type="text"
+            id="nameInput"
+            class="name-input"
+            placeholder="Masukkan nama..."
+            autocomplete="off"
+        >
+
+        <div id="error" class="error">
+            Nama belum diisi 😅
+        </div>
+
+        <button class="start-btn" onclick="mulai()">
+            💌 Buka Kejutan
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small">
+            ✨ A Special Day ✨
+        </div>
+
+        <h1>Happy Birthday</h1>
+
+        <h2 id="namaTampil">
+            Nama Kamu 🎂
+        </h2>
+
+        <p>
+            Hari ini adalah hari yang spesial,
+            karena seseorang yang luar biasa sedang
+            merayakan hari kelahirannya.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOTO ================= -->
+
+<section class="photo-section">
+
+    <div class="photo-card">
+
+        <!-- MASUKKAN FOTO DENGAN NAMA foto.jpg -->
+        <img src="foto.jpg" alt="Foto Kenangan">
+
+    </div>
+
+    <h2>📸 A Beautiful Memory</h2>
+
+</section>
+
+
+<!-- ================= UCAPAN ================= -->
+
+<section class="message">
+
+    <div class="message-card">
+
+        <h2>💖 Untuk <span id="namaPesan">Kamu</span></h2>
+
+        <p>
+
+            Selamat ulang tahun! 🎉
+
+            <br><br>
+
+            Semoga di usia yang baru ini,
+            kamu mendapatkan banyak kebahagiaan,
+            kesehatan, keberkahan, dan hal-hal baik
+            yang selama ini kamu harapkan.
+
+            <br><br>
+
+            Semoga semua impianmu perlahan menjadi nyata.
+            Jangan pernah berhenti bermimpi,
+            jangan takut untuk melangkah,
+            dan tetaplah menjadi dirimu sendiri.
+
+            <br><br>
+
+            Semoga tahun ini menjadi salah satu
+            tahun terbaik dalam hidupmu.
+
+            <br><br>
+
+            <strong>
+                Happy Birthday, <span id="namaAkhir">Kamu</span>! 🎂✨
+            </strong>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HARAPAN ================= -->
+
+<section class="wishes">
+
+    <h2>✨ Harapan Untukmu</h2>
+
+    <div class="wish-container">
+
+        <div class="wish">
+
+            <div class="icon">❤️</div>
+
+            <h3>Kebahagiaan</h3>
+
+            <p>
+                Semoga hari-harimu selalu dipenuhi
+                kebahagiaan dan senyuman.
+            </p>
+
+        </div>
+
+
+        <div class="wish">
+
+            <div class="icon">🌟</div>
+
+            <h3>Kesuksesan</h3>
+
+            <p>
+                Semoga semua cita-cita dan impianmu
+                bisa tercapai.
+            </p>
+
+        </div>
+
+
+        <div class="wish">
+
+            <div class="icon">🤲</div>
+
+            <h3>Keberkahan</h3>
+
+            <p>
+                Semoga hidupmu selalu diberi
+                kesehatan dan keberkahan.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    Made with ❤️ for
+    <span id="namaFooter">Someone Special</span>
+
+    <br><br>
+
+    © 2026 Birthday Website
+
+</footer>
+
+
+<!-- ================= MUSIK ================= -->
+
+<audio id="music" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="musik()">
+    🎵
+</button>
+
+
+<script>
+
+/* ================= MULAI ================= */
+
+function mulai() {
+
+    const input = document.getElementById("nameInput");
+
+    const nama = input.value.trim();
+
+    const error = document.getElementById("error");
+
+    if (nama === "") {
+
+        error.style.display = "block";
+
+        input.focus();
+
+        return;
+
+    }
+
+    error.style.display = "none";
+
+    /*
+        Memasukkan nama ke semua bagian website
+    */
+
+    document.getElementById("namaTampil").textContent =
+        nama + " 🎂";
+
+    document.getElementById("namaPesan").textContent =
+        nama;
+
+    document.getElementById("namaAkhir").textContent =
+        nama;
+
+    document.getElementById("namaFooter").textContent =
+        nama;
+
+
+    /*
+        Hilangkan halaman input
+    */
+
+    document.getElementById("inputPage")
+        .classList.add("hide");
+
+
+    /*
+        Jalankan musik
+    */
+
+    const music = document.getElementById("music");
+
+    music.play().catch(() => {});
+
+
+    /*
+        Jalankan efek
+    */
+
+    konfeti();
+
+    balon();
+
+}
+
+
+/* ================= ENTER ================= */
+
+document.getElementById("nameInput")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+            mulai();
+
+        }
+
+    });
+
+
+/* ================= MUSIK ================= */
+
+function musik() {
+
+    const music =
+        document.getElementById("music");
+
+    const button =
+        document.querySelector(".music-btn");
+
+    if (music.paused) {
+
+        music.play();
+
+        button.textContent = "🎵";
+
+    } else {
+
+        music.pause();
+
+        button.textContent = "🔇";
+
+    }
+
+}
+
+
+/* ================= KONFETI ================= */
+
+function konfeti() {
+
+    for (let i = 0; i < 120; i++) {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "confetti";
+
+        item.style.left =
+            Math.random() * 100 + "vw";
+
+        item.style.background =
+            `hsl(${Math.random() * 360}, 90%, 65%)`;
+
+        item.style.animationDuration =
+            (Math.random() * 3 + 2) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => {
+
+            item.remove();
+
+        }, 6000);
+
+    }
+
+}
+
+
+/* ================= BALON ================= */
+
+function balon() {
+
+    setInterval(() => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "balloon";
+
+        item.style.left =
+            Math.random() * 100 + "vw";
+
+        item.style.background =
+            `hsl(${Math.random() * 360}, 80%, 65%)`;
+
+        item.style.animationDuration =
+            (Math.random() * 5 + 7) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => {
+
+            item.remove();
+
+        }, 13000);
+
+    }, 900);
+
+}
+
+</script>
+
+</body>
+</html>
+```
