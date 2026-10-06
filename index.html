@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,6 +8,10 @@
 <title>Birthday Surprise 🎂</title>
 
 <style>
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
     margin:0;
     padding:0;
@@ -21,87 +26,145 @@ body{
     min-height:100vh;
     overflow-x:hidden;
     font-family:Arial,Helvetica,sans-serif;
-    color:white;
+    color:#fff;
 
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,80,170,.18),transparent 28%),
-        radial-gradient(circle at 80% 70%,rgba(100,80,255,.18),transparent 30%),
-        linear-gradient(135deg,#12091d,#24102f,#100719);
+        radial-gradient(circle at 15% 15%,rgba(255,82,170,.20),transparent 25%),
+        radial-gradient(circle at 85% 25%,rgba(116,83,255,.18),transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(255,180,80,.10),transparent 30%),
+        linear-gradient(135deg,#080510,#160b24,#090510);
 }
 
-/* ================= BACKGROUND ================= */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-.bg{
+.background{
     position:fixed;
-    border-radius:50%;
+    inset:0;
+    overflow:hidden;
     pointer-events:none;
-    z-index:-2;
-    filter:blur(5px);
+    z-index:-10;
 }
 
-.bg1{
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(3px);
+    opacity:.45;
+}
+
+.orb1{
+    width:280px;
+    height:280px;
+    top:-100px;
+    left:-90px;
+    background:radial-gradient(circle,#ff4fa3,transparent 70%);
+    animation:orbMove1 9s ease-in-out infinite alternate;
+}
+
+.orb2{
+    width:360px;
+    height:360px;
+    right:-130px;
+    top:25%;
+    background:radial-gradient(circle,#765cff,transparent 70%);
+    animation:orbMove2 11s ease-in-out infinite alternate;
+}
+
+.orb3{
     width:250px;
     height:250px;
-    left:-90px;
-    top:-80px;
-    background:rgba(255,80,170,.12);
-    animation:float 7s infinite alternate;
-}
-
-.bg2{
-    width:300px;
-    height:300px;
-    right:-120px;
-    top:30%;
-    background:rgba(120,80,255,.12);
-    animation:float2 9s infinite alternate;
-}
-
-.bg3{
-    width:180px;
-    height:180px;
-    bottom:-70px;
     left:20%;
-    background:rgba(255,190,90,.08);
+    bottom:-130px;
+    background:radial-gradient(circle,#ffbd65,transparent 70%);
+    animation:orbMove3 13s ease-in-out infinite alternate;
 }
 
-@keyframes float{
+@keyframes orbMove1{
     to{
-        transform:translate(30px,30px);
+        transform:translate(70px,60px) scale(1.2);
     }
 }
 
-@keyframes float2{
+@keyframes orbMove2{
     to{
-        transform:translate(-30px,25px);
+        transform:translate(-60px,50px) scale(1.15);
     }
 }
 
-/* ================= STARS ================= */
+@keyframes orbMove3{
+    to{
+        transform:translate(80px,-50px) scale(1.2);
+    }
+}
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+}
 
 .star{
-    position:fixed;
-    z-index:-1;
-    color:white;
-    opacity:.5;
-    animation:twinkle 2s infinite alternate;
+    position:absolute;
+    color:#fff;
+    opacity:.3;
+    animation:starTwinkle 2s ease-in-out infinite alternate;
 }
 
-.star1{top:12%;left:10%}
-.star2{top:20%;right:13%;animation-delay:.5s}
-.star3{top:55%;left:7%;animation-delay:1s}
-.star4{top:75%;right:9%;animation-delay:1.4s}
-.star5{top:40%;left:50%;animation-delay:.8s}
-.star6{top:85%;left:30%;animation-delay:1.7s}
+.s1{left:8%;top:14%;font-size:18px}
+.s2{left:24%;top:72%;font-size:13px;animation-delay:.7s}
+.s3{right:12%;top:17%;font-size:20px;animation-delay:1s}
+.s4{right:22%;top:60%;font-size:13px;animation-delay:1.5s}
+.s5{left:50%;top:30%;font-size:12px;animation-delay:.4s}
+.s6{left:73%;top:84%;font-size:18px;animation-delay:1.8s}
+.s7{left:38%;top:10%;font-size:10px;animation-delay:2s}
+.s8{right:5%;top:43%;font-size:14px;animation-delay:.9s}
 
-@keyframes twinkle{
+@keyframes starTwinkle{
+    from{
+        opacity:.2;
+        transform:scale(.7) rotate(0);
+    }
     to{
         opacity:1;
-        transform:scale(1.4);
+        transform:scale(1.5) rotate(20deg);
     }
 }
 
-/* ================= NAME PAGE ================= */
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#fff;
+    opacity:.25;
+    pointer-events:none;
+    z-index:-3;
+    animation:particleFloat linear infinite;
+}
+
+@keyframes particleFloat{
+    from{
+        transform:translateY(105vh);
+    }
+    to{
+        transform:translateY(-10vh);
+    }
+}
+
+/* =========================================================
+   NAME SCREEN
+========================================================= */
 
 #namePage{
     position:fixed;
@@ -115,190 +178,321 @@ body{
     padding:20px;
 
     background:
-        radial-gradient(circle at center,rgba(255,90,180,.15),transparent 40%),
-        rgba(10,5,18,.97);
+        radial-gradient(circle at center,rgba(255,80,170,.16),transparent 35%),
+        rgba(5,3,10,.96);
 
-    transition:.8s;
+    backdrop-filter:blur(12px);
+
+    transition:opacity .9s ease,visibility .9s ease;
 }
 
 .nameBox{
-    width:min(430px,100%);
-    padding:40px 30px;
+    width:min(460px,100%);
+    padding:42px 32px;
+
+    position:relative;
+    overflow:hidden;
 
     text-align:center;
 
-    border-radius:28px;
-    border:1px solid rgba(255,255,255,.15);
+    border-radius:32px;
+    border:1px solid rgba(255,255,255,.16);
 
-    background:rgba(255,255,255,.07);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.045)
+        );
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(25px);
 
-    box-shadow:0 30px 80px rgba(0,0,0,.4);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.12);
 
-    animation:nameIn 1s ease;
+    animation:nameBoxIn 1s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes nameIn{
+.nameBox::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    top:-100px;
+    right:-80px;
+    border-radius:50%;
+    background:rgba(255,100,180,.16);
+    filter:blur(20px);
+}
+
+.nameBox::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    bottom:-80px;
+    left:-50px;
+    border-radius:50%;
+    background:rgba(120,90,255,.15);
+    filter:blur(20px);
+}
+
+@keyframes nameBoxIn{
     from{
         opacity:0;
-        transform:scale(.8) translateY(30px);
+        transform:translateY(50px) scale(.85);
     }
     to{
         opacity:1;
-        transform:scale(1) translateY(0);
+        transform:translateY(0) scale(1);
     }
 }
 
 .nameEmoji{
-    font-size:65px;
-    animation:gift 2s infinite alternate;
+    position:relative;
+    z-index:2;
+
+    font-size:72px;
+
+    filter:drop-shadow(0 15px 25px rgba(255,90,180,.3));
+
+    animation:
+        giftFloat 2.2s ease-in-out infinite,
+        emojiGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes gift{
+@keyframes giftFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-3deg);
+    }
+    50%{
+        transform:translateY(-12px) rotate(4deg);
+    }
+}
+
+@keyframes emojiGlow{
     to{
-        transform:translateY(-10px) rotate(5deg);
+        filter:drop-shadow(0 0 25px rgba(255,100,190,.7));
     }
 }
 
 .nameBox h1{
-    margin:15px 0 10px;
-    font-size:32px;
+    position:relative;
+    z-index:2;
+
+    margin:18px 0 8px;
+
+    font-size:34px;
+    letter-spacing:-1px;
 }
 
 .nameBox p{
-    color:#d8d1df;
-    line-height:1.6;
+    position:relative;
+    z-index:2;
+
+    color:#d8d0df;
+    line-height:1.7;
 }
 
 .nameInput{
+    position:relative;
+    z-index:2;
+
     width:100%;
     margin-top:25px;
 
-    padding:15px 18px;
+    padding:16px 18px;
 
-    border-radius:15px;
-    border:1px solid rgba(255,255,255,.2);
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.16);
     outline:none;
 
-    background:rgba(255,255,255,.08);
-    color:white;
+    background:rgba(0,0,0,.20);
+    color:#fff;
 
     font-size:16px;
+
+    transition:.3s;
 }
 
 .nameInput::placeholder{
-    color:#aaa;
+    color:#999;
 }
 
 .nameInput:focus{
     border-color:#ff72b4;
-    box-shadow:0 0 20px rgba(255,100,180,.2);
+    box-shadow:
+        0 0 0 4px rgba(255,100,180,.08),
+        0 0 30px rgba(255,80,170,.15);
 }
 
 .error{
     display:none;
+
+    position:relative;
+    z-index:2;
+
     margin-top:10px;
-    color:#ff9cbe;
+
+    color:#ff9fca;
     font-size:13px;
 }
 
 .startBtn{
+    position:relative;
+    z-index:2;
+
     width:100%;
     margin-top:15px;
-    padding:15px;
+
+    padding:16px;
 
     border:none;
-    border-radius:15px;
+    border-radius:16px;
 
-    color:white;
+    color:#fff;
     font-size:16px;
     font-weight:bold;
 
-    background:linear-gradient(135deg,#ff70b3,#9b68ff);
+    background:
+        linear-gradient(
+            135deg,
+            #ff62ad,
+            #a066ff
+        );
 
     cursor:pointer;
+
+    box-shadow:
+        0 12px 30px rgba(255,80,170,.22);
 
     transition:.3s;
 }
 
 .startBtn:hover{
-    transform:translateY(-3px);
+    transform:translateY(-4px);
+    box-shadow:
+        0 18px 40px rgba(255,80,170,.35);
 }
 
-/* ================= BROWSER BAR ================= */
+.startBtn:active{
+    transform:scale(.97);
+}
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .browser{
-    width:min(850px,calc(100% - 30px));
-    margin:20px auto 0;
+    width:min(900px,calc(100% - 30px));
+    margin:18px auto 0;
 
     display:flex;
     align-items:center;
     gap:12px;
 
-    padding:10px 15px;
+    padding:10px 14px;
 
-    border-radius:15px;
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:18px;
 
-    background:rgba(255,255,255,.07);
+    background:rgba(255,255,255,.055);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(20px);
 
-    color:#aaa;
+    color:#999;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.15);
+}
+
+.browserDots{
+    display:flex;
+    gap:5px;
+}
+
+.browserDots span{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:rgba(255,255,255,.25);
 }
 
 .url{
     flex:1;
-    padding:8px 12px;
+
+    padding:8px 13px;
 
     border-radius:10px;
 
-    background:rgba(0,0,0,.2);
+    background:rgba(0,0,0,.20);
 
-    font-size:13px;
+    color:#aaa;
+
+    font-size:12px;
 }
 
-/* ================= MUSIC ================= */
+/* =========================================================
+   MUSIC
+========================================================= */
 
 .musicBtn{
     position:fixed;
-    right:20px;
-    bottom:20px;
+    right:22px;
+    bottom:22px;
 
-    width:52px;
-    height:52px;
+    width:58px;
+    height:58px;
 
     display:none;
+    align-items:center;
+    justify-content:center;
 
-    z-index:500;
+    z-index:700;
 
-    border:none;
+    border:1px solid rgba(255,255,255,.18);
     border-radius:50%;
 
-    color:white;
-    font-size:20px;
+    color:#fff;
+    font-size:22px;
 
-    background:rgba(255,255,255,.1);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,100,180,.28),
+            rgba(120,90,255,.25)
+        );
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(20px);
 
     cursor:pointer;
 
-    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
+
+    transition:.3s;
+}
+
+.musicBtn:hover{
+    transform:scale(1.08);
 }
 
 .musicBtn.playing{
-    animation:musicPulse 1s infinite alternate;
+    animation:musicPulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes musicPulse{
     to{
-        box-shadow:0 0 25px rgba(255,100,180,.8);
+        box-shadow:
+            0 0 0 8px rgba(255,100,180,.05),
+            0 0 35px rgba(255,100,180,.55);
     }
 }
 
-/* ================= GAME ================= */
+/* =========================================================
+   GAME
+========================================================= */
 
 #gameSection{
     min-height:calc(100vh - 80px);
@@ -307,34 +501,74 @@ body{
     align-items:center;
     justify-content:center;
 
-    padding:40px 20px;
+    padding:45px 20px;
 }
 
 .gameCard{
-    width:min(500px,100%);
-    padding:30px;
+    width:min(530px,100%);
 
-    border-radius:30px;
+    padding:34px 30px;
+
+    border-radius:32px;
 
     border:1px solid rgba(255,255,255,.13);
 
-    background:rgba(255,255,255,.07);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.105),
+            rgba(255,255,255,.045)
+        );
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(22px);
 
-    box-shadow:0 30px 80px rgba(0,0,0,.3);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
 
     text-align:center;
+
+    animation:cardEnter 1s ease;
+}
+
+@keyframes cardEnter{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.gameBadge{
+    display:inline-block;
+
+    margin-bottom:13px;
+    padding:7px 13px;
+
+    border-radius:30px;
+
+    color:#ffc3df;
+
+    background:rgba(255,100,180,.10);
+
+    border:1px solid rgba(255,120,190,.14);
+
+    font-size:12px;
+    letter-spacing:1px;
 }
 
 .gameTitle{
-    font-size:28px;
+    font-size:30px;
     margin-bottom:8px;
 }
 
 .gameSub{
     color:#cfc5d8;
-    margin-bottom:25px;
+    line-height:1.6;
+    margin-bottom:28px;
 }
 
 .gameGrid{
@@ -342,41 +576,81 @@ body{
     grid-template-columns:repeat(4,1fr);
     gap:12px;
 
-    max-width:380px;
+    max-width:390px;
     margin:auto;
 }
 
 .card{
+    position:relative;
+
     aspect-ratio:1;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:17px;
+    border-radius:18px;
 
-    background:linear-gradient(135deg,#ff72b4,#875df5);
+    background:
+        linear-gradient(
+            135deg,
+            #ff68b0,
+            #8c61ff
+        );
 
     cursor:pointer;
 
     font-size:0;
 
-    transition:.35s;
+    transform-style:preserve-3d;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.2);
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        box-shadow .3s;
+
+    box-shadow:
+        0 10px 22px rgba(0,0,0,.25);
+
+    overflow:hidden;
 }
 
 .card::before{
     content:"?";
     font-size:25px;
     font-weight:bold;
+
+    transition:.3s;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            transparent 45%
+        );
+
+    pointer-events:none;
+}
+
+.card:hover{
+    transform:translateY(-4px) rotateZ(1deg);
+    box-shadow:
+        0 15px 30px rgba(255,80,170,.22);
 }
 
 .card.flipped,
 .card.matched{
-    background:rgba(255,255,255,.12);
+    background:rgba(255,255,255,.10);
     transform:rotateY(180deg);
     font-size:32px;
+
+    box-shadow:
+        0 0 25px rgba(255,100,190,.18);
 }
 
 .card.flipped::before,
@@ -385,32 +659,62 @@ body{
 }
 
 .card.matched{
-    box-shadow:0 0 20px rgba(255,100,190,.5);
+    border:1px solid rgba(255,150,220,.25);
+
+    box-shadow:
+        0 0 25px rgba(255,100,190,.35);
 }
 
 .gameInfo{
-    margin-top:20px;
-    color:#ccc;
+    margin-top:23px;
+
+    color:#aaa;
+    font-size:14px;
+}
+
+#moves{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.06);
 }
 
 .nextBtn{
     display:none;
 
-    margin-top:20px;
-    padding:13px 25px;
+    margin-top:22px;
+    padding:14px 25px;
 
     border:none;
     border-radius:30px;
 
-    color:white;
+    color:#fff;
     font-weight:bold;
 
-    background:linear-gradient(135deg,#ff70b3,#9c67ff);
+    background:
+        linear-gradient(
+            135deg,
+            #ff6db3,
+            #9564ff
+        );
 
     cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(255,80,170,.25);
+
+    transition:.3s;
 }
 
-/* ================= CAKE SECTION ================= */
+.nextBtn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* =========================================================
+   CAKE SECTION
+========================================================= */
 
 #cakeSection{
     min-height:100vh;
@@ -421,17 +725,17 @@ body{
     align-items:center;
     justify-content:center;
 
-    padding:40px 20px;
+    padding:50px 20px;
 
     text-align:center;
 
-    animation:cakeAppear 1s ease;
+    animation:sectionIn 1s ease;
 }
 
-@keyframes cakeAppear{
+@keyframes sectionIn{
     from{
         opacity:0;
-        transform:translateY(50px);
+        transform:translateY(60px);
     }
     to{
         opacity:1;
@@ -440,23 +744,35 @@ body{
 }
 
 .cakeTitle span{
-    font-size:42px;
+    display:inline-block;
+
+    font-size:45px;
+
+    animation:ribbon 2s ease-in-out infinite;
+}
+
+@keyframes ribbon{
+    50%{
+        transform:rotate(7deg) scale(1.08);
+    }
 }
 
 .cakeTitle h2{
-    font-size:30px;
-    margin:8px 0;
+    font-size:32px;
+    margin:6px 0 8px;
 }
 
 .cakeTitle p{
-    color:#ddd;
+    color:#d5ceda;
 }
 
-/* ================= CAKE SCENE ================= */
+/* =========================================================
+   CAKE SCENE
+========================================================= */
 
 .cakeScene{
-    width:330px;
-    height:330px;
+    width:350px;
+    height:350px;
 
     position:relative;
 
@@ -464,62 +780,80 @@ body{
     align-items:flex-end;
     justify-content:center;
 
-    margin:15px auto;
+    margin:15px auto 5px;
 }
 
 .cakeGlow{
     position:absolute;
 
-    width:240px;
-    height:240px;
+    width:280px;
+    height:280px;
 
     border-radius:50%;
 
-    background:rgba(255,170,70,.12);
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,165,80,.25),
+            transparent 70%
+        );
 
-    filter:blur(35px);
+    filter:blur(25px);
 
-    animation:glow 2s infinite alternate;
+    animation:cakeGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes glow{
+@keyframes cakeGlow{
     to{
-        transform:scale(1.15);
-        opacity:1;
+        transform:scale(1.18);
+        opacity:.8;
     }
 }
 
-/* ================= PLATE ================= */
+/* =========================================================
+   PLATE
+========================================================= */
 
 .plate{
     position:absolute;
     bottom:18px;
 
-    width:270px;
-    height:35px;
+    width:285px;
+    height:38px;
 
     border-radius:50%;
 
-    background:linear-gradient(#fff,#d9d9e8);
+    background:
+        linear-gradient(
+            #fff,
+            #d7d8e7
+        );
 
-    box-shadow:0 10px 20px rgba(0,0,0,.3);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.35),
+        inset 0 -5px 8px rgba(0,0,0,.08);
 }
 
-/* ================= CAKE ================= */
+/* =========================================================
+   CAKE
+========================================================= */
 
 .cake{
     position:absolute;
     bottom:40px;
 
-    width:230px;
-    height:145px;
+    width:240px;
+    height:150px;
 
     animation:cakeFloat 3s ease-in-out infinite;
 }
 
 @keyframes cakeFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
     50%{
-        transform:translateY(-5px);
+        transform:translateY(-7px);
     }
 }
 
@@ -527,58 +861,69 @@ body{
     position:absolute;
     top:0;
 
-    width:230px;
-    height:65px;
+    width:240px;
+    height:68px;
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,#ffb6d9,#ff77ad);
+    background:
+        radial-gradient(
+            circle at 40% 30%,
+            #ffd6e9,
+            #ff8abb 55%,
+            #ff639f
+        );
 
-    border:4px solid white;
+    border:4px solid rgba(255,255,255,.9);
 
     z-index:4;
+
+    box-shadow:
+        0 5px 20px rgba(255,90,160,.2);
 }
 
 .cakeBody{
     position:absolute;
-    top:35px;
+    top:36px;
 
-    width:230px;
-    height:95px;
+    width:240px;
+    height:98px;
 
-    border-radius:0 0 20px 20px;
+    border-radius:0 0 23px 23px;
 
-    border:4px solid white;
+    border:4px solid rgba(255,255,255,.9);
 
-    background:linear-gradient(
-        90deg,
-        #ff8fbd,
-        #ffb1d1,
-        #ff82b5
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #ff78ad,
+            #ffb3d2,
+            #ff82b6
+        );
 
-    box-shadow:inset 0 -12px 15px rgba(0,0,0,.12);
+    box-shadow:
+        inset 0 -15px 18px rgba(0,0,0,.13);
 }
 
 .cakeBottom{
     position:absolute;
     bottom:0;
 
-    width:230px;
-    height:18px;
+    width:240px;
+    height:20px;
 
-    border-radius:0 0 25px 25px;
+    border-radius:0 0 28px 28px;
 
-    background:#ff65a5;
+    background:#ff5f9f;
 }
 
 .cakeLine{
     position:absolute;
 
-    width:170px;
+    width:175px;
     height:5px;
 
-    left:26px;
+    left:29px;
     top:35px;
 
     border-radius:10px;
@@ -587,32 +932,37 @@ body{
 }
 
 .line2{
-    width:130px;
-    left:48px;
-    top:60px;
+    width:135px;
+    left:50px;
+    top:61px;
 }
 
 .cream{
     position:absolute;
 
-    width:42px;
-    height:23px;
+    width:45px;
+    height:24px;
 
     bottom:-9px;
 
     border-radius:50%;
 
-    background:white;
+    background:#fff;
+
+    box-shadow:0 3px 5px rgba(0,0,0,.08);
 }
 
 .cream1{left:35px}
-.cream2{left:94px}
-.cream3{right:28px}
+.cream2{left:98px}
+.cream3{right:27px}
 
 .decoration{
     position:absolute;
-    color:white;
-    font-size:19px;
+
+    color:#fff;
+    font-size:20px;
+
+    animation:decorFloat 2s ease-in-out infinite alternate;
 }
 
 .d1{
@@ -621,41 +971,57 @@ body{
 }
 
 .d2{
-    left:105px;
-    top:47px;
+    left:108px;
+    top:48px;
+    animation-delay:.4s;
 }
 
 .d3{
     right:30px;
     top:15px;
+    animation-delay:.8s;
 }
 
-/* ================= CANDLE ================= */
+@keyframes decorFloat{
+    to{
+        transform:translateY(-4px) scale(1.08);
+    }
+}
+
+/* =========================================================
+   CANDLE
+========================================================= */
 
 .candle{
     position:absolute;
 
     z-index:10;
 
-    width:24px;
-    height:72px;
+    width:25px;
+    height:75px;
 
     bottom:145px;
 
-    border-radius:6px;
+    border-radius:7px;
 
-    background:repeating-linear-gradient(
-        -45deg,
-        #fff,
-        #fff 7px,
-        #ff77ad 7px,
-        #ff77ad 14px
-    );
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #fff,
+            #fff 7px,
+            #ff75ad 7px,
+            #ff75ad 14px
+        );
 
     border:2px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.18);
 }
 
-/* ================= FLAME ================= */
+/* =========================================================
+   FLAME
+========================================================= */
 
 .flame{
     position:absolute;
@@ -664,16 +1030,23 @@ body{
 
     bottom:213px;
 
-    width:27px;
-    height:45px;
+    width:29px;
+    height:48px;
 
-    border-radius:50%;
+    border-radius:55% 45% 55% 45%;
 
-    background:#ff9d00;
+    background:
+        linear-gradient(
+            #fff16a,
+            #ff9b00 60%,
+            #ff5b00
+        );
 
-    filter:drop-shadow(0 0 12px #ff9d00);
+    filter:
+        drop-shadow(0 0 8px #ffb000)
+        drop-shadow(0 0 22px #ff7900);
 
-    animation:flame .12s infinite alternate;
+    animation:flameMove .12s infinite alternate;
 }
 
 .flame::before{
@@ -682,14 +1055,14 @@ body{
     position:absolute;
 
     width:18px;
-    height:30px;
+    height:31px;
 
-    left:4px;
-    bottom:2px;
+    left:5px;
+    bottom:3px;
 
     border-radius:50%;
 
-    background:#fff4a3;
+    background:#fff7bd;
 }
 
 .flameInner{
@@ -698,7 +1071,7 @@ body{
     width:8px;
     height:17px;
 
-    left:9px;
+    left:10px;
     bottom:3px;
 
     border-radius:50%;
@@ -706,12 +1079,12 @@ body{
     background:white;
 }
 
-@keyframes flame{
+@keyframes flameMove{
     from{
-        transform:rotate(-5deg) scaleY(.95);
+        transform:rotate(-5deg) scale(.95);
     }
     to{
-        transform:rotate(5deg) scaleY(1.08);
+        transform:rotate(5deg) scale(1.08);
     }
 }
 
@@ -722,68 +1095,87 @@ body{
 @keyframes flameOff{
     100%{
         opacity:0;
-        transform:scale(0);
+        transform:scale(0) translateY(10px);
     }
 }
 
-/* ================= WISH ================= */
+/* =========================================================
+   WISH
+========================================================= */
 
 .wishText{
-    margin:5px 0 20px;
+    margin:4px 0 20px;
 
     color:#eee;
-    line-height:1.7;
+
+    line-height:1.8;
 }
 
 .blowBtn,
 .continueBtn{
-    padding:14px 27px;
+    padding:15px 28px;
 
     border:none;
     border-radius:30px;
 
-    color:white;
+    color:#fff;
     font-weight:bold;
 
-    background:linear-gradient(135deg,#ff75b5,#ff4f91);
+    background:
+        linear-gradient(
+            135deg,
+            #ff6eb4,
+            #a067ff
+        );
 
     cursor:pointer;
 
-    box-shadow:0 8px 25px rgba(255,80,150,.35);
+    box-shadow:
+        0 10px 30px rgba(255,80,160,.25);
 
     transition:.3s;
 }
 
 .blowBtn:hover,
 .continueBtn:hover{
-    transform:translateY(-3px) scale(1.03);
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:
+        0 16px 35px rgba(255,80,160,.35);
+}
+
+.blowBtn:active,
+.continueBtn:active{
+    transform:scale(.96);
 }
 
 .afterBlow{
     display:none;
 
-    animation:reveal 1s ease;
+    animation:reveal .9s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes reveal{
     from{
         opacity:0;
-        transform:scale(.7);
+        transform:scale(.7) translateY(20px);
     }
     to{
         opacity:1;
-        transform:scale(1);
+        transform:scale(1) translateY(0);
     }
 }
 
 .sparkleBig{
-    font-size:50px;
-    animation:sparkle 1.5s infinite alternate;
+    font-size:55px;
+
+    filter:drop-shadow(0 0 15px rgba(255,220,100,.5));
+
+    animation:sparkleBig 1.5s infinite alternate;
 }
 
-@keyframes sparkle{
+@keyframes sparkleBig{
     to{
-        transform:scale(1.2) rotate(10deg);
+        transform:scale(1.18) rotate(8deg);
     }
 }
 
@@ -793,10 +1185,12 @@ body{
 
 .afterBlow p{
     color:#ddd;
-    line-height:1.7;
+    line-height:1.8;
 }
 
-/* ================= SMOKE ================= */
+/* =========================================================
+   SMOKE
+========================================================= */
 
 .smoke{
     position:absolute;
@@ -810,81 +1204,134 @@ body{
 
     background:rgba(255,255,255,.5);
 
-    animation:smoke 2s ease-out forwards;
+    filter:blur(2px);
+
+    animation:smokeMove 2.2s ease-out forwards;
 }
 
-@keyframes smoke{
+@keyframes smokeMove{
     to{
         opacity:0;
-        transform:translateY(-70px) scale(3);
+        transform:
+            translate(
+                calc(-20px + 40px * var(--randomX)),
+                -85px
+            )
+            scale(3.5);
     }
 }
 
-/* ================= MESSAGE ================= */
+/* =========================================================
+   MESSAGE
+========================================================= */
 
 #messageCard{
     display:none;
 
-    width:min(700px,calc(100% - 30px));
+    width:min(720px,calc(100% - 30px));
 
-    margin:80px auto 40px;
+    margin:80px auto 45px;
 
-    padding:45px 35px;
+    padding:48px 38px;
 
-    border-radius:30px;
+    position:relative;
+    overflow:hidden;
 
-    border:1px solid rgba(255,255,255,.13);
+    border-radius:32px;
 
-    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.14);
 
-    backdrop-filter:blur(20px);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.045)
+        );
+
+    backdrop-filter:blur(24px);
 
     text-align:center;
 
-    box-shadow:0 30px 80px rgba(0,0,0,.3);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.35);
 
-    animation:messageIn 1s ease;
+    animation:messageIn 1s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes messageIn{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+#messageCard::before{
+    content:"";
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    top:-160px;
+    right:-100px;
+
+    border-radius:50%;
+
+    background:rgba(255,90,180,.12);
+
+    filter:blur(25px);
 }
 
 .messageEmoji{
-    font-size:55px;
+    position:relative;
+    z-index:2;
+
+    font-size:58px;
+
     margin-bottom:15px;
+
+    animation:emojiBounce 2s ease-in-out infinite;
+}
+
+@keyframes emojiBounce{
+    50%{
+        transform:translateY(-7px) rotate(3deg);
+    }
 }
 
 .messageCard h2{
-    font-size:30px;
-    margin-bottom:25px;
+    position:relative;
+    z-index:2;
+
+    font-size:32px;
+
+    margin-bottom:28px;
 }
 
 .messageText{
+    position:relative;
+    z-index:2;
+
     color:#e4dce8;
-    line-height:1.9;
+
+    line-height:1.95;
+
     font-size:16px;
 }
 
 .messageText p{
-    margin-bottom:15px;
+    margin-bottom:17px;
 }
 
-/* ================= FROM YOUR FRIEND ================= */
+.messageText strong{
+    color:#fff;
+
+    font-size:17px;
+}
+
+/* =========================================================
+   FRIEND SLIDE
+========================================================= */
 
 #friendSlide{
-    min-height:70vh;
+    min-height:72vh;
 
-    width:min(700px,calc(100% - 30px));
+    width:min(720px,calc(100% - 30px));
 
-    margin:0 auto 80px;
+    margin:0 auto 90px;
 
     display:none;
 
@@ -896,45 +1343,56 @@ body{
     position:relative;
     overflow:hidden;
 
-    border-radius:35px;
+    border-radius:38px;
 
-    border:1px solid rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.14);
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,120,190,.14),
-            rgba(130,90,255,.14)
-        );
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,100,190,.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(120,90,255,.16),
+            transparent 35%
+        ),
+        rgba(255,255,255,.055);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(25px);
 
-    box-shadow:0 30px 80px rgba(0,0,0,.3);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.35);
 
-    animation:friendIn 1.2s ease;
+    animation:friendIn 1.2s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes friendIn{
     from{
         opacity:0;
-        transform:translateY(100px);
+        transform:translateY(100px) scale(.95);
     }
     to{
         opacity:1;
-        transform:translateY(0);
+        transform:translateY(0) scale(1);
     }
 }
 
 .friendContent{
-    padding:50px 25px;
+    padding:55px 25px;
+
     position:relative;
     z-index:2;
 }
 
 .friendStars{
-    font-size:30px;
+    font-size:31px;
     letter-spacing:12px;
+
     margin-bottom:20px;
+
+    color:#ffd2ea;
 
     animation:starMove 2s infinite alternate;
 }
@@ -942,32 +1400,41 @@ body{
 @keyframes starMove{
     to{
         transform:scale(1.1);
+        letter-spacing:15px;
     }
 }
 
 .friendHeart{
-    font-size:65px;
+    font-size:68px;
+
     margin-bottom:15px;
 
-    animation:heart 1.4s infinite;
+    filter:drop-shadow(0 0 20px rgba(255,100,180,.35));
+
+    animation:heartBeat 1.4s infinite;
 }
 
-@keyframes heart{
+@keyframes heartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
     50%{
-        transform:scale(1.15);
+        transform:scale(1.16);
     }
 }
 
 .friendContent h2{
-    font-size:38px;
-    margin-bottom:15px;
+    font-size:42px;
 
-    background:linear-gradient(
-        90deg,
-        #ff9dce,
-        #c6a2ff,
-        #ff9dce
-    );
+    margin-bottom:17px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff9dce,
+            #d2b3ff,
+            #ff9dce
+        );
 
     background-size:200%;
 
@@ -985,100 +1452,193 @@ body{
 
 .friendContent p{
     color:#ddd;
+
     line-height:1.8;
 }
 
 .smallText{
-    margin-top:30px;
+    margin-top:32px;
+
     font-size:13px;
+
     color:#aaa !important;
 }
 
-/* ================= BUBBLES ================= */
+/* =========================================================
+   BUBBLES
+========================================================= */
 
 .bubble{
     position:absolute;
 
     border-radius:50%;
 
-    background:rgba(255,255,255,.05);
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.01)
+        );
 
-    animation:bubble 6s infinite alternate;
+    border:1px solid rgba(255,255,255,.04);
+
+    animation:bubbleMove 7s ease-in-out infinite alternate;
 }
 
 .b1{
-    width:150px;
-    height:150px;
-    left:-60px;
-    top:-50px;
+    width:170px;
+    height:170px;
+    left:-70px;
+    top:-60px;
 }
 
 .b2{
-    width:200px;
-    height:200px;
-    right:-80px;
-    bottom:-70px;
+    width:230px;
+    height:230px;
+    right:-90px;
+    bottom:-90px;
+    animation-delay:1s;
 }
 
 .b3{
-    width:70px;
-    height:70px;
+    width:75px;
+    height:75px;
     right:15%;
     top:10%;
+    animation-delay:2s;
 }
 
-@keyframes bubble{
+@keyframes bubbleMove{
     to{
-        transform:translate(20px,-20px);
+        transform:translate(25px,-25px) scale(1.05);
     }
 }
 
-/* ================= CONFETTI ================= */
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.heartParticle{
+    position:fixed;
+
+    bottom:-40px;
+
+    pointer-events:none;
+
+    z-index:600;
+
+    animation:heartRise linear forwards;
+}
+
+@keyframes heartRise{
+    0%{
+        opacity:0;
+        transform:translateY(0) scale(.5) rotate(0);
+    }
+    15%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:
+            translateY(-110vh)
+            translateX(var(--drift))
+            scale(1.2)
+            rotate(25deg);
+    }
+}
+
+/* =========================================================
+   CONFETTI
+========================================================= */
 
 .confetti{
     position:fixed;
 
-    top:-30px;
+    top:-40px;
 
     z-index:900;
 
     pointer-events:none;
 
-    animation:fall 4s linear forwards;
+    animation:confettiFall linear forwards;
 }
 
-@keyframes fall{
-    to{
-        top:110vh;
+@keyframes confettiFall{
+    0%{
+        opacity:1;
+        transform:translateY(0) rotate(0deg);
+    }
 
+    100%{
+        opacity:0;
         transform:
-            rotate(720deg)
-            translateX(100px);
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(900deg);
     }
 }
 
-/* ================= MOBILE ================= */
+/* =========================================================
+   TAP RIPPLE
+========================================================= */
 
-@media(max-width:500px){
+.ripple{
+    position:fixed;
 
-    .nameBox{
-        padding:35px 22px;
+    width:15px;
+    height:15px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    border:2px solid rgba(255,150,220,.7);
+
+    transform:translate(-50%,-50%);
+
+    animation:ripple .6s ease-out forwards;
+}
+
+@keyframes ripple{
+    to{
+        width:80px;
+        height:80px;
+        opacity:0;
     }
+}
 
-    .nameBox h1{
-        font-size:27px;
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .browser{
+        margin-top:10px;
+        width:calc(100% - 20px);
     }
 
     .gameCard{
-        padding:22px 15px;
+        padding:28px 16px;
     }
 
     .gameTitle{
-        font-size:24px;
+        font-size:25px;
+    }
+
+    .gameSub{
+        font-size:14px;
     }
 
     .gameGrid{
         gap:8px;
+    }
+
+    .card{
+        border-radius:14px;
     }
 
     .card.flipped,
@@ -1087,33 +1647,30 @@ body{
     }
 
     .cakeScene{
-        transform:scale(.86);
-        margin-top:-5px;
-        margin-bottom:0;
+        transform:scale(.85);
+        margin-top:-10px;
+        margin-bottom:-10px;
     }
 
     .cakeTitle h2{
-        font-size:25px;
+        font-size:26px;
     }
 
-    .messageCard{
-        padding:35px 22px;
+    #messageCard{
+        padding:38px 22px;
     }
 
     .messageCard h2{
-        font-size:25px;
+        font-size:26px;
     }
 
     .messageText{
         font-size:14px;
-    }
-
-    #friendSlide{
-        min-height:65vh;
+        line-height:1.85;
     }
 
     .friendContent h2{
-        font-size:30px;
+        font-size:31px;
     }
 
     .friendContent p{
@@ -1121,7 +1678,48 @@ body{
     }
 
     .friendHeart{
-        font-size:55px;
+        font-size:57px;
+    }
+
+    .friendStars{
+        font-size:24px;
+        letter-spacing:8px;
+    }
+
+    #friendSlide{
+        min-height:65vh;
+    }
+
+    .musicBtn{
+        width:52px;
+        height:52px;
+        right:15px;
+        bottom:15px;
+    }
+}
+
+@media(max-width:380px){
+
+    .nameBox{
+        padding:34px 20px;
+    }
+
+    .nameEmoji{
+        font-size:60px;
+    }
+
+    .nameBox h1{
+        font-size:27px;
+    }
+
+    .gameGrid{
+        gap:6px;
+    }
+
+    .cakeScene{
+        transform:scale(.75);
+        margin-top:-25px;
+        margin-bottom:-30px;
     }
 }
 </style>
@@ -1129,28 +1727,44 @@ body{
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-<div class="bg bg1"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3"></div>
+<div class="background">
 
-<div class="star star1">✦</div>
-<div class="star star2">✧</div>
-<div class="star star3">✦</div>
-<div class="star star4">✧</div>
-<div class="star star5">✦</div>
-<div class="star star6">✧</div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="stars">
+
+        <div class="star s1">✦</div>
+        <div class="star s2">✧</div>
+        <div class="star s3">✦</div>
+        <div class="star s4">✧</div>
+        <div class="star s5">✦</div>
+        <div class="star s6">✧</div>
+        <div class="star s7">✦</div>
+        <div class="star s8">✧</div>
+
+    </div>
+
+</div>
 
 
-<!-- ================= AUDIO ================= -->
+<!-- =====================================================
+     AUDIO
+===================================================== -->
 
 <audio id="bgMusic" loop preload="auto">
     <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 
-<!-- ================= NAMA ================= -->
+<!-- =====================================================
+     NAME PAGE
+===================================================== -->
 
 <div id="namePage">
 
@@ -1165,8 +1779,8 @@ body{
         </h1>
 
         <p>
-            Ada kejutan kecil untukmu...<br>
-            masukkan namamu terlebih dahulu ✨
+            Ada kejutan kecil yang sudah disiapkan untukmu...<br>
+            Masukkan namamu terlebih dahulu ✨
         </p>
 
         <input
@@ -1193,16 +1807,20 @@ body{
 </div>
 
 
-<!-- ================= BROWSER ================= -->
+<!-- =====================================================
+     BROWSER BAR
+===================================================== -->
 
 <div class="browser">
 
-    <div>
-        ⌕
+    <div class="browserDots">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
     <div class="url">
-        birthday-surprise.id
+        ✨ birthday-surprise.id
     </div>
 
     <div>
@@ -1212,7 +1830,9 @@ body{
 </div>
 
 
-<!-- ================= MUSIC BUTTON ================= -->
+<!-- =====================================================
+     MUSIC BUTTON
+===================================================== -->
 
 <button
     id="musicBtn"
@@ -1225,18 +1845,25 @@ body{
 
 <main>
 
-<!-- ================= GAME ================= -->
+<!-- =====================================================
+     GAME
+===================================================== -->
 
 <section id="gameSection">
 
     <div class="gameCard">
 
+        <div class="gameBadge">
+            MINI GAME • MEMORY
+        </div>
+
         <h2 class="gameTitle">
-            A Little Game for You 🎁
+            A Little Game For You 🎁
         </h2>
 
         <p class="gameSub">
-            Balik 2 kartu yang sama! 🫣
+            Temukan pasangan emoji yang sama<br>
+            untuk membuka kejutan berikutnya ✨
         </p>
 
         <div
@@ -1262,7 +1889,9 @@ body{
 </section>
 
 
-<!-- ================= CAKE ================= -->
+<!-- =====================================================
+     CAKE
+===================================================== -->
 
 <section id="cakeSection">
 
@@ -1277,7 +1906,7 @@ body{
         </h2>
 
         <p>
-            Buat satu harapan dulu ✨
+            Buat satu harapan terbaikmu malam ini ✨
         </p>
 
     </div>
@@ -1288,7 +1917,7 @@ body{
         <div class="cakeGlow"></div>
 
 
-        <!-- API LILIN -->
+        <!-- FLAME -->
 
         <div
             id="flame"
@@ -1298,12 +1927,12 @@ body{
         </div>
 
 
-        <!-- LILIN -->
+        <!-- CANDLE -->
 
         <div class="candle"></div>
 
 
-        <!-- KUE -->
+        <!-- CAKE -->
 
         <div class="cake">
 
@@ -1345,10 +1974,8 @@ body{
 
 
     <p class="wishText">
-
         Pejamkan mata sebentar...<br>
-        buat satu harapan dalam hati 💫
-
+        Buat satu harapan dalam hati 💫
     </p>
 
 
@@ -1393,7 +2020,9 @@ body{
 </section>
 
 
-<!-- ================= UCAPAN ================= -->
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
 
 <section id="messageCard">
 
@@ -1432,7 +2061,9 @@ body{
             Kalau suatu hari terasa berat,
             ingat bahwa kamu sudah melewati
             banyak hal sampai sejauh ini.
-            Tetap kuat dan jangan menyerah. 🌷
+            Tetap kuat, terus melangkah,
+            dan jangan berhenti percaya pada
+            hal-hal baik yang sedang menunggumu. 🌷
         </p>
 
         <p>
@@ -1453,14 +2084,15 @@ body{
 </section>
 
 
-<!-- ================= FROM YOUR FRIEND ================= -->
+<!-- =====================================================
+     FROM YOUR FRIEND
+===================================================== -->
 
 <section id="friendSlide">
 
     <div class="bubble b1"></div>
     <div class="bubble b2"></div>
     <div class="bubble b3"></div>
-
 
     <div class="friendContent">
 
@@ -1494,9 +2126,9 @@ body{
 
 <script>
 
-/* =====================================================
-   VARIABLE
-===================================================== */
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let userName = "";
 
@@ -1514,9 +2146,43 @@ const bgMusic =
     document.getElementById("bgMusic");
 
 
-/* =====================================================
-   MULAI
-===================================================== */
+/* =========================================================
+   BACKGROUND PARTICLES
+========================================================= */
+
+function createBackgroundParticles(){
+
+    for(let i = 0; i < 30; i++){
+
+        const particle =
+            document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.style.left =
+            Math.random() * 100 + "vw";
+
+        particle.style.animationDuration =
+            (8 + Math.random() * 15) + "s";
+
+        particle.style.animationDelay =
+            (-Math.random() * 15) + "s";
+
+        particle.style.opacity =
+            (.1 + Math.random() * .35);
+
+        document.body.appendChild(particle);
+
+    }
+
+}
+
+createBackgroundParticles();
+
+
+/* =========================================================
+   START SURPRISE
+========================================================= */
 
 function startSurprise(){
 
@@ -1551,16 +2217,17 @@ function startSurprise(){
         .textContent = userName;
 
 
-    document.getElementById("namePage")
-        .style.opacity = "0";
+    const namePage =
+        document.getElementById("namePage");
+
+    namePage.style.opacity = "0";
 
 
     setTimeout(function(){
 
-        document.getElementById("namePage")
-            .style.display = "none";
+        namePage.style.display = "none";
 
-    },800);
+    },900);
 
 
     createGame();
@@ -1568,9 +2235,9 @@ function startSurprise(){
 }
 
 
-/* =====================================================
-   ENTER
-===================================================== */
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
 document
 .getElementById("nameInput")
@@ -1588,9 +2255,9 @@ document
 );
 
 
-/* =====================================================
+/* =========================================================
    GAME DATA
-===================================================== */
+========================================================= */
 
 const emojis = [
 
@@ -1604,24 +2271,42 @@ const emojis = [
 ];
 
 
-/* =====================================================
+/* =========================================================
    SHUFFLE
-===================================================== */
+========================================================= */
 
 function shuffle(array){
 
-    return array.sort(
-        function(){
-            return Math.random() - .5;
-        }
-    );
+    for(
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
+    }
+
+    return array;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATE GAME
-===================================================== */
+========================================================= */
 
 function createGame(){
 
@@ -1629,6 +2314,18 @@ function createGame(){
         document.getElementById("gameGrid");
 
     grid.innerHTML = "";
+
+    matched = 0;
+    moves = 0;
+
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+
+    document.getElementById("moves")
+        .textContent =
+        "Percobaan: 0";
+
 
     const cards =
         shuffle([...emojis]);
@@ -1663,16 +2360,17 @@ function createGame(){
 }
 
 
-/* =====================================================
+/* =========================================================
    FLIP CARD
-===================================================== */
+========================================================= */
 
 function flipCard(card){
 
     if(
         lockBoard ||
         card === firstCard ||
-        card.classList.contains("matched")
+        card.classList.contains("matched") ||
+        card.classList.contains("flipped")
     ){
 
         return;
@@ -1684,6 +2382,9 @@ function flipCard(card){
 
     card.textContent =
         card.dataset.emoji;
+
+
+    createSmallSparkle(card);
 
 
     if(!firstCard){
@@ -1710,9 +2411,70 @@ function flipCard(card){
 }
 
 
-/* =====================================================
+/* =========================================================
+   SMALL SPARKLE
+========================================================= */
+
+function createSmallSparkle(card){
+
+    const rect =
+        card.getBoundingClientRect();
+
+    for(let i = 0; i < 5; i++){
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.textContent = "✦";
+
+        sparkle.style.position = "fixed";
+        sparkle.style.left =
+            rect.left + rect.width / 2 + "px";
+
+        sparkle.style.top =
+            rect.top + rect.height / 2 + "px";
+
+        sparkle.style.zIndex = "9999";
+        sparkle.style.pointerEvents = "none";
+
+        sparkle.style.color = "#ffd1ea";
+
+        sparkle.style.fontSize =
+            (8 + Math.random() * 8) + "px";
+
+        sparkle.style.transition =
+            "all .6s ease";
+
+        document.body.appendChild(sparkle);
+
+
+        requestAnimationFrame(function(){
+
+            sparkle.style.transform =
+                `translate(
+                    ${-30 + Math.random()*60}px,
+                    ${-30 + Math.random()*60}px
+                )`;
+
+            sparkle.style.opacity = "0";
+
+        });
+
+
+        setTimeout(function(){
+
+            sparkle.remove();
+
+        },700);
+
+    }
+
+}
+
+
+/* =========================================================
    CHECK MATCH
-===================================================== */
+========================================================= */
 
 function checkMatch(){
 
@@ -1729,17 +2491,16 @@ function checkMatch(){
 
         matched += 2;
 
+
+        createMatchBurst(firstCard);
+
+
         resetCards();
 
 
         if(matched === emojis.length){
 
             setTimeout(function(){
-
-                /* ==========================
-                   GAME SELESAI
-                   MUSIK MULAI DI SINI
-                ========================== */
 
                 startMusic();
 
@@ -1766,6 +2527,8 @@ function checkMatch(){
 
                 confetti();
 
+                createHearts(18);
+
 
             },500);
 
@@ -1790,16 +2553,78 @@ function checkMatch(){
 
             resetCards();
 
-        },800);
+        },850);
 
     }
 
 }
 
 
-/* =====================================================
-   RESET CARD
-===================================================== */
+/* =========================================================
+   MATCH BURST
+========================================================= */
+
+function createMatchBurst(card){
+
+    const rect =
+        card.getBoundingClientRect();
+
+    for(let i = 0; i < 12; i++){
+
+        const spark =
+            document.createElement("div");
+
+        spark.textContent =
+            ["✦","✨","♥"][
+                Math.floor(Math.random()*3)
+            ];
+
+        spark.style.position = "fixed";
+
+        spark.style.left =
+            rect.left + rect.width/2 + "px";
+
+        spark.style.top =
+            rect.top + rect.height/2 + "px";
+
+        spark.style.zIndex = "9999";
+        spark.style.pointerEvents = "none";
+
+        spark.style.fontSize = "12px";
+
+        spark.style.transition =
+            "all .8s ease";
+
+        document.body.appendChild(spark);
+
+
+        requestAnimationFrame(function(){
+
+            spark.style.transform =
+                `translate(
+                    ${-60 + Math.random()*120}px,
+                    ${-60 + Math.random()*120}px
+                ) scale(${.5 + Math.random()})`;
+
+            spark.style.opacity = "0";
+
+        });
+
+
+        setTimeout(function(){
+
+            spark.remove();
+
+        },850);
+
+    }
+
+}
+
+
+/* =========================================================
+   RESET CARDS
+========================================================= */
 
 function resetCards(){
 
@@ -1812,9 +2637,9 @@ function resetCards(){
 }
 
 
-/* =====================================================
-   MUSIK DIMULAI SETELAH GAME
-===================================================== */
+/* =========================================================
+   START MUSIC
+========================================================= */
 
 function startMusic(){
 
@@ -1834,7 +2659,7 @@ function startMusic(){
 
 
         musicBtn.style.display =
-            "block";
+            "flex";
 
 
         musicBtn.classList.add(
@@ -1842,33 +2667,26 @@ function startMusic(){
         );
 
 
-        musicBtn.innerHTML = "🎵";
-
+        musicBtn.innerHTML =
+            "🎵";
 
     })
     .catch(function(){
 
-        /*
-        Jika browser tidak langsung
-        memainkan audio, tombol musik
-        tetap ditampilkan.
-        */
-
         const musicBtn =
             document.getElementById("musicBtn");
 
-
         musicBtn.style.display =
-            "block";
+            "flex";
 
     });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    TOGGLE MUSIC
-===================================================== */
+========================================================= */
 
 function toggleMusic(){
 
@@ -1901,9 +2719,9 @@ function toggleMusic(){
 }
 
 
-/* =====================================================
+/* =========================================================
    SHOW CAKE
-===================================================== */
+========================================================= */
 
 function showCake(){
 
@@ -1926,12 +2744,14 @@ function showCake(){
 
     confetti();
 
+    createHearts(15);
+
 }
 
 
-/* =====================================================
-   TIUP LILIN
-===================================================== */
+/* =========================================================
+   BLOW CANDLE
+========================================================= */
 
 function blowCandle(){
 
@@ -1960,6 +2780,8 @@ function blowCandle(){
 
     createSmoke();
 
+    createHearts(20);
+
 
     setTimeout(function(){
 
@@ -1986,9 +2808,9 @@ function blowCandle(){
 }
 
 
-/* =====================================================
-   ASAP
-===================================================== */
+/* =========================================================
+   SMOKE
+========================================================= */
 
 function createSmoke(){
 
@@ -1996,21 +2818,23 @@ function createSmoke(){
         document.querySelector(".cakeScene");
 
 
-    for(let i=0;i<7;i++){
+    for(let i = 0; i < 9; i++){
 
         const smoke =
             document.createElement("div");
 
-
         smoke.className = "smoke";
 
-
         smoke.style.left =
-            (48 + Math.random()*8) + "%";
+            (47 + Math.random()*8) + "%";
 
+        smoke.style.setProperty(
+            "--randomX",
+            Math.random()
+        );
 
         smoke.style.animationDelay =
-            (i*.12) + "s";
+            (i * .12) + "s";
 
 
         scene.appendChild(smoke);
@@ -2020,16 +2844,16 @@ function createSmoke(){
 
             smoke.remove();
 
-        },2500);
+        },2600);
 
     }
 
 }
 
 
-/* =====================================================
-   SHOW UCAPAN
-===================================================== */
+/* =========================================================
+   SHOW BIRTHDAY MESSAGE
+========================================================= */
 
 function showBirthdayMessage(){
 
@@ -2051,12 +2875,8 @@ function showBirthdayMessage(){
 
     confetti();
 
+    createHearts(25);
 
-    /*
-       Setelah 4 detik,
-       slide FROM YOUR FRIEND
-       muncul di bawah ucapan.
-    */
 
     setTimeout(function(){
 
@@ -2076,7 +2896,9 @@ function showBirthdayMessage(){
 
             confetti();
 
-        },300);
+            createHearts(30);
+
+        },500);
 
 
     },4000);
@@ -2084,9 +2906,9 @@ function showBirthdayMessage(){
 }
 
 
-/* =====================================================
+/* =========================================================
    CONFETTI
-===================================================== */
+========================================================= */
 
 function confetti(){
 
@@ -2098,12 +2920,14 @@ function confetti(){
         "🎊",
         "⭐",
         "💝",
-        "🌸"
+        "🌸",
+        "🎀",
+        "🥳"
 
     ];
 
 
-    for(let i=0;i<60;i++){
+    for(let i = 0; i < 70; i++){
 
         const item =
             document.createElement("div");
@@ -2127,15 +2951,21 @@ function confetti(){
 
 
         item.style.fontSize =
-            (10 + Math.random()*15) + "px";
+            (10 + Math.random()*16) + "px";
 
 
         item.style.animationDuration =
-            (2 + Math.random()*3) + "s";
+            (2.5 + Math.random()*3.5) + "s";
 
 
         item.style.animationDelay =
             Math.random()*.8 + "s";
+
+
+        item.style.setProperty(
+            "--drift",
+            (-150 + Math.random()*300) + "px"
+        );
 
 
         document.body.appendChild(item);
@@ -2145,11 +2975,113 @@ function confetti(){
 
             item.remove();
 
-        },5000);
+        },6500);
 
     }
 
 }
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+function createHearts(amount){
+
+    const symbols = [
+        "💖",
+        "💕",
+        "💗",
+        "💝",
+        "✨"
+    ];
+
+
+    for(let i = 0; i < amount; i++){
+
+        const heart =
+            document.createElement("div");
+
+        heart.className =
+            "heartParticle";
+
+
+        heart.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        heart.style.left =
+            Math.random()*100 + "vw";
+
+
+        heart.style.fontSize =
+            (12 + Math.random()*20) + "px";
+
+
+        heart.style.animationDuration =
+            (4 + Math.random()*5) + "s";
+
+
+        heart.style.animationDelay =
+            Math.random()*1.5 + "s";
+
+
+        heart.style.setProperty(
+            "--drift",
+            (-100 + Math.random()*200) + "px"
+        );
+
+
+        document.body.appendChild(heart);
+
+
+        setTimeout(function(){
+
+            heart.remove();
+
+        },9000);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLICK RIPPLE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(e){
+
+        const ripple =
+            document.createElement("div");
+
+        ripple.className = "ripple";
+
+        ripple.style.left =
+            e.clientX + "px";
+
+        ripple.style.top =
+            e.clientY + "px";
+
+
+        document.body.appendChild(ripple);
+
+
+        setTimeout(function(){
+
+            ripple.remove();
+
+        },650);
+
+    }
+);
 
 </script>
 
