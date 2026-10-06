@@ -7,1230 +7,898 @@
 <title>Birthday Surprise 🎂</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    overflow-x: hidden;
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
 
     background:
-        radial-gradient(circle at 20% 20%, rgba(255,100,180,.18), transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(120,90,255,.20), transparent 30%),
-        linear-gradient(135deg, #160b27, #271039, #13091e);
+        radial-gradient(circle at 20% 20%,rgba(255,80,170,.18),transparent 28%),
+        radial-gradient(circle at 80% 70%,rgba(100,80,255,.18),transparent 30%),
+        linear-gradient(135deg,#12091d,#24102f,#100719);
 }
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
+/* ================= BACKGROUND ================= */
 
-.bg-circle {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -2;
-    filter: blur(3px);
+.bg{
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-2;
+    filter:blur(5px);
 }
 
-.c1 {
-    width: 220px;
-    height: 220px;
-    background: rgba(255, 90, 170, .12);
-    top: -70px;
-    left: -70px;
-    animation: float1 7s infinite alternate;
+.bg1{
+    width:250px;
+    height:250px;
+    left:-90px;
+    top:-80px;
+    background:rgba(255,80,170,.12);
+    animation:float 7s infinite alternate;
 }
 
-.c2 {
-    width: 280px;
-    height: 280px;
-    background: rgba(130, 90, 255, .12);
-    right: -100px;
-    top: 25%;
-    animation: float2 9s infinite alternate;
+.bg2{
+    width:300px;
+    height:300px;
+    right:-120px;
+    top:30%;
+    background:rgba(120,80,255,.12);
+    animation:float2 9s infinite alternate;
 }
 
-.c3 {
-    width: 180px;
-    height: 180px;
-    background: rgba(255, 200, 100, .08);
-    bottom: -50px;
-    left: 20%;
-    animation: float1 8s infinite alternate;
+.bg3{
+    width:180px;
+    height:180px;
+    bottom:-70px;
+    left:20%;
+    background:rgba(255,190,90,.08);
 }
 
-@keyframes float1 {
-    from {
-        transform: translate(0,0);
-    }
-
-    to {
-        transform: translate(30px,30px);
+@keyframes float{
+    to{
+        transform:translate(30px,30px);
     }
 }
 
-@keyframes float2 {
-    from {
-        transform: translate(0,0);
-    }
-
-    to {
-        transform: translate(-35px,25px);
+@keyframes float2{
+    to{
+        transform:translate(-30px,25px);
     }
 }
 
-/* =====================================================
-   STARS
-===================================================== */
+/* ================= STARS ================= */
 
-.star {
-    position: fixed;
-    color: rgba(255,255,255,.7);
-    font-size: 12px;
-    animation: starTwinkle 2s infinite alternate;
-    z-index: -1;
+.star{
+    position:fixed;
+    z-index:-1;
+    color:white;
+    opacity:.5;
+    animation:twinkle 2s infinite alternate;
 }
 
-.s1 { top: 12%; left: 12%; }
-.s2 { top: 23%; right: 15%; animation-delay: .4s; }
-.s3 { top: 55%; left: 8%; animation-delay: .8s; }
-.s4 { top: 72%; right: 10%; animation-delay: 1.1s; }
-.s5 { top: 85%; left: 30%; animation-delay: 1.4s; }
-.s6 { top: 40%; left: 50%; animation-delay: .7s; }
+.star1{top:12%;left:10%}
+.star2{top:20%;right:13%;animation-delay:.5s}
+.star3{top:55%;left:7%;animation-delay:1s}
+.star4{top:75%;right:9%;animation-delay:1.4s}
+.star5{top:40%;left:50%;animation-delay:.8s}
+.star6{top:85%;left:30%;animation-delay:1.7s}
 
-@keyframes starTwinkle {
-    from {
-        opacity: .25;
-        transform: scale(.7);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1.3);
+@keyframes twinkle{
+    to{
+        opacity:1;
+        transform:scale(1.4);
     }
 }
 
-/* =====================================================
-   NAME PAGE
-===================================================== */
+/* ================= NAME PAGE ================= */
 
-#namePage {
-    position: fixed;
-    inset: 0;
+#namePage{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
 
     background:
-        radial-gradient(circle at center, rgba(255,90,170,.16), transparent 40%),
-        rgba(12,6,20,.97);
+        radial-gradient(circle at center,rgba(255,90,180,.15),transparent 40%),
+        rgba(10,5,18,.97);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 1000;
-    padding: 20px;
-
-    transition: .8s ease;
+    transition:.8s;
 }
 
-.nameBox {
-    width: min(430px, 100%);
-    padding: 40px 30px;
+.nameBox{
+    width:min(430px,100%);
+    padding:40px 30px;
 
-    text-align: center;
+    text-align:center;
 
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 28px;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,.15);
 
-    background: rgba(255,255,255,.07);
-    backdrop-filter: blur(20px);
+    background:rgba(255,255,255,.07);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.4),
-        inset 0 0 30px rgba(255,255,255,.03);
+    backdrop-filter:blur(20px);
 
-    animation: boxIn 1s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+
+    animation:nameIn 1s ease;
 }
 
-@keyframes boxIn {
-    from {
-        opacity: 0;
-        transform: scale(.8) translateY(30px);
+@keyframes nameIn{
+    from{
+        opacity:0;
+        transform:scale(.8) translateY(30px);
     }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
     }
 }
 
-.nameEmoji {
-    font-size: 65px;
-    animation: giftFloat 2s infinite alternate;
+.nameEmoji{
+    font-size:65px;
+    animation:gift 2s infinite alternate;
 }
 
-@keyframes giftFloat {
-    from {
-        transform: translateY(0) rotate(-5deg);
-    }
-
-    to {
-        transform: translateY(-10px) rotate(5deg);
+@keyframes gift{
+    to{
+        transform:translateY(-10px) rotate(5deg);
     }
 }
 
-.nameBox h1 {
-    margin: 15px 0 10px;
-    font-size: 32px;
+.nameBox h1{
+    margin:15px 0 10px;
+    font-size:32px;
 }
 
-.nameBox p {
-    color: #d8d1df;
-    line-height: 1.6;
+.nameBox p{
+    color:#d8d1df;
+    line-height:1.6;
 }
 
-.nameInput {
-    width: 100%;
-    margin-top: 25px;
+.nameInput{
+    width:100%;
+    margin-top:25px;
 
-    padding: 15px 18px;
+    padding:15px 18px;
 
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 15px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.2);
+    outline:none;
 
-    outline: none;
+    background:rgba(255,255,255,.08);
+    color:white;
 
-    background: rgba(255,255,255,.08);
-    color: white;
-
-    font-size: 16px;
+    font-size:16px;
 }
 
-.nameInput::placeholder {
-    color: #aaa;
+.nameInput::placeholder{
+    color:#aaa;
 }
 
-.nameInput:focus {
-    border-color: #ff75b5;
-
-    box-shadow:
-        0 0 20px rgba(255,117,181,.15);
+.nameInput:focus{
+    border-color:#ff72b4;
+    box-shadow:0 0 20px rgba(255,100,180,.2);
 }
 
-.startBtn {
-    width: 100%;
-
-    margin-top: 15px;
-
-    padding: 15px;
-
-    border: none;
-    border-radius: 15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff70b3,
-            #a96cff
-        );
-
-    color: white;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 30px rgba(255,80,160,.25);
-
-    transition: .3s;
+.error{
+    display:none;
+    margin-top:10px;
+    color:#ff9cbe;
+    font-size:13px;
 }
 
-.startBtn:hover {
-    transform: translateY(-3px);
+.startBtn{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+
+    border:none;
+    border-radius:15px;
+
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#ff70b3,#9b68ff);
+
+    cursor:pointer;
+
+    transition:.3s;
 }
 
-.error {
-    display: none;
-
-    color: #ff9bbd;
-
-    margin-top: 10px;
-
-    font-size: 13px;
+.startBtn:hover{
+    transform:translateY(-3px);
 }
 
-/* =====================================================
-   BROWSER BAR
-===================================================== */
+/* ================= BROWSER BAR ================= */
 
-.browser {
-    width: min(850px, calc(100% - 30px));
+.browser{
+    width:min(850px,calc(100% - 30px));
+    margin:20px auto 0;
 
-    margin: 20px auto 0;
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-    display: flex;
-    align-items: center;
+    padding:10px 15px;
 
-    gap: 12px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.1);
 
-    padding: 10px 15px;
+    background:rgba(255,255,255,.07);
 
-    border-radius: 15px;
+    backdrop-filter:blur(15px);
 
-    background: rgba(255,255,255,.08);
-
-    border:
-        1px solid rgba(255,255,255,.1);
-
-    backdrop-filter: blur(15px);
-
-    color: #bbb;
+    color:#aaa;
 }
 
-.searchIcon {
-    font-size: 20px;
+.url{
+    flex:1;
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    background:rgba(0,0,0,.2);
+
+    font-size:13px;
 }
 
-.url {
-    flex: 1;
+/* ================= MUSIC ================= */
 
-    padding: 8px 12px;
+.musicBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
 
-    background: rgba(0,0,0,.2);
+    width:52px;
+    height:52px;
 
-    border-radius: 10px;
+    display:none;
 
-    font-size: 13px;
+    z-index:500;
+
+    border:none;
+    border-radius:50%;
+
+    color:white;
+    font-size:20px;
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(15px);
+
+    cursor:pointer;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
 }
 
-.refresh {
-    font-size: 20px;
+.musicBtn.playing{
+    animation:musicPulse 1s infinite alternate;
 }
 
-/* =====================================================
-   MUSIC BUTTON
-===================================================== */
-
-.musicBtn {
-    position: fixed;
-
-    right: 20px;
-    bottom: 20px;
-
-    width: 52px;
-    height: 52px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(255,255,255,.2);
-
-    background:
-        rgba(255,255,255,.1);
-
-    color: white;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(15px);
-
-    z-index: 500;
-
-    display: none;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.3);
-
-    transition: .3s;
-}
-
-.musicBtn.playing {
-    animation: musicPulse 1s infinite alternate;
-}
-
-@keyframes musicPulse {
-    from {
-        box-shadow:
-            0 0 0 rgba(255,100,180,.2);
-    }
-
-    to {
-        box-shadow:
-            0 0 25px rgba(255,100,180,.7);
+@keyframes musicPulse{
+    to{
+        box-shadow:0 0 25px rgba(255,100,180,.8);
     }
 }
 
-/* =====================================================
-   GAME
-===================================================== */
+/* ================= GAME ================= */
 
-#gameSection {
-    min-height: calc(100vh - 80px);
+#gameSection{
+    min-height:calc(100vh - 80px);
 
-    display: flex;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    align-items: center;
-    justify-content: center;
-
-    padding: 40px 20px;
+    padding:40px 20px;
 }
 
-.gameCard {
-    width: min(500px, 100%);
+.gameCard{
+    width:min(500px,100%);
+    padding:30px;
 
-    padding: 30px;
+    border-radius:30px;
 
-    border-radius: 30px;
+    border:1px solid rgba(255,255,255,.13);
 
-    background:
-        rgba(255,255,255,.07);
+    background:rgba(255,255,255,.07);
 
-    border:
-        1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(18px);
 
-    backdrop-filter: blur(18px);
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.3);
-
-    text-align: center;
+    text-align:center;
 }
 
-.gameTitle {
-    font-size: 28px;
-    margin-bottom: 8px;
+.gameTitle{
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-.gameSub {
-    color: #cfc5d8;
-    margin-bottom: 25px;
+.gameSub{
+    color:#cfc5d8;
+    margin-bottom:25px;
 }
 
-.gameGrid {
-    display: grid;
+.gameGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
 
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap: 12px;
-
-    max-width: 380px;
-
-    margin: auto;
+    max-width:380px;
+    margin:auto;
 }
 
-.card {
-    aspect-ratio: 1;
+.card{
+    aspect-ratio:1;
 
-    border-radius: 17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff72b4,
-            #875df5
-        );
+    border-radius:17px;
 
-    display: flex;
+    background:linear-gradient(135deg,#ff72b4,#875df5);
 
-    justify-content: center;
-    align-items: center;
+    cursor:pointer;
 
-    font-size: 0;
+    font-size:0;
 
-    cursor: pointer;
+    transition:.35s;
 
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.2);
-
-    transition: .35s;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
-.card::before {
-    content: "?";
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    color: white;
+.card::before{
+    content:"?";
+    font-size:25px;
+    font-weight:bold;
 }
 
 .card.flipped,
-.card.matched {
-    background:
-        rgba(255,255,255,.12);
-
-    transform:
-        rotateY(180deg);
+.card.matched{
+    background:rgba(255,255,255,.12);
+    transform:rotateY(180deg);
+    font-size:32px;
 }
 
 .card.flipped::before,
-.card.matched::before {
-    display: none;
+.card.matched::before{
+    display:none;
 }
 
-.card.flipped,
-.card.matched {
-    font-size: 32px;
+.card.matched{
+    box-shadow:0 0 20px rgba(255,100,190,.5);
 }
 
-.card.matched {
-    box-shadow:
-        0 0 20px rgba(255,110,190,.4);
+.gameInfo{
+    margin-top:20px;
+    color:#ccc;
 }
 
-.gameInfo {
-    margin-top: 20px;
+.nextBtn{
+    display:none;
 
-    color: #cfc5d8;
+    margin-top:20px;
+    padding:13px 25px;
+
+    border:none;
+    border-radius:30px;
+
+    color:white;
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#ff70b3,#9c67ff);
+
+    cursor:pointer;
 }
 
-.nextBtn {
-    display: none;
+/* ================= CAKE SECTION ================= */
 
-    margin-top: 20px;
+#cakeSection{
+    min-height:100vh;
 
-    padding: 13px 25px;
+    display:none;
 
-    border: none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
-    border-radius: 30px;
+    padding:40px 20px;
 
-    color: white;
+    text-align:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff70b3,
-            #9c67ff
-        );
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 8px 25px rgba(255,80,160,.3);
+    animation:cakeAppear 1s ease;
 }
 
-/* =====================================================
-   CAKE
-===================================================== */
-
-.cakeSection {
-    min-height: 100vh;
-
-    display: none;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 50px 20px;
-
-    position: relative;
-
-    text-align: center;
-
-    animation:
-        cakeAppear 1s ease;
-}
-
-@keyframes cakeAppear {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
+@keyframes cakeAppear{
+    from{
+        opacity:0;
+        transform:translateY(50px);
     }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
-.cakeTitle span {
-    font-size: 42px;
+.cakeTitle span{
+    font-size:42px;
 }
 
-.cakeTitle h2 {
-    color: white;
-
-    font-size: 30px;
-
-    margin: 8px 0;
+.cakeTitle h2{
+    font-size:30px;
+    margin:8px 0;
 }
 
-.cakeTitle p {
-    color: #ddd;
-
-    margin-bottom: 20px;
+.cakeTitle p{
+    color:#ddd;
 }
 
-/* =====================================================
-   CAKE SCENE
-===================================================== */
+/* ================= CAKE SCENE ================= */
 
-.cakeScene {
-    width: 330px;
-    height: 330px;
+.cakeScene{
+    width:330px;
+    height:330px;
 
-    position: relative;
+    position:relative;
 
-    display: flex;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
 
-    justify-content: center;
-    align-items: flex-end;
-
-    margin: 10px auto 20px;
+    margin:15px auto;
 }
 
-.cakeGlow {
-    position: absolute;
+.cakeGlow{
+    position:absolute;
 
-    width: 240px;
-    height: 240px;
+    width:240px;
+    height:240px;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background:
-        rgba(255,180,80,.12);
+    background:rgba(255,170,70,.12);
 
-    filter: blur(35px);
+    filter:blur(35px);
 
-    animation:
-        glowPulse 2s infinite alternate;
+    animation:glow 2s infinite alternate;
 }
 
-@keyframes glowPulse {
-    from {
-        transform: scale(.85);
-        opacity: .5;
-    }
-
-    to {
-        transform: scale(1.15);
-        opacity: 1;
+@keyframes glow{
+    to{
+        transform:scale(1.15);
+        opacity:1;
     }
 }
 
-/* =====================================================
-   PLATE
-===================================================== */
+/* ================= PLATE ================= */
 
-.plate {
-    position: absolute;
+.plate{
+    position:absolute;
+    bottom:18px;
 
-    bottom: 18px;
+    width:270px;
+    height:35px;
 
-    width: 270px;
-    height: 35px;
+    border-radius:50%;
 
-    background:
-        linear-gradient(#fff,#d9d9e8);
+    background:linear-gradient(#fff,#d9d9e8);
 
-    border-radius: 50%;
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,.3),
-        inset 0 -5px 8px rgba(0,0,0,.15);
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
 }
 
-/* =====================================================
-   CAKE
-===================================================== */
+/* ================= CAKE ================= */
 
-.cake {
-    position: absolute;
+.cake{
+    position:absolute;
+    bottom:40px;
 
-    bottom: 40px;
+    width:230px;
+    height:145px;
 
-    width: 230px;
-    height: 145px;
-
-    z-index: 3;
-
-    animation:
-        cakeFloat 3s ease-in-out infinite;
+    animation:cakeFloat 3s ease-in-out infinite;
 }
 
-@keyframes cakeFloat {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
+@keyframes cakeFloat{
+    50%{
+        transform:translateY(-5px);
     }
 }
 
-.cakeTop {
-    position: absolute;
+.cakeTop{
+    position:absolute;
+    top:0;
 
-    top: 0;
+    width:230px;
+    height:65px;
 
-    width: 230px;
-    height: 65px;
+    border-radius:50%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffb6d9,
-            #ff77ad
-        );
+    background:linear-gradient(135deg,#ffb6d9,#ff77ad);
 
-    border-radius: 50%;
+    border:4px solid white;
 
-    border: 4px solid white;
-
-    box-shadow:
-        inset 0 -8px 10px rgba(0,0,0,.12);
-
-    z-index: 4;
+    z-index:4;
 }
 
-/* =====================================================
-   CREAM
-===================================================== */
+.cakeBody{
+    position:absolute;
+    top:35px;
 
-.cream {
-    position: absolute;
+    width:230px;
+    height:95px;
 
-    width: 42px;
-    height: 23px;
+    border-radius:0 0 20px 20px;
 
-    background: white;
+    border:4px solid white;
 
-    border-radius: 50%;
+    background:linear-gradient(
+        90deg,
+        #ff8fbd,
+        #ffb1d1,
+        #ff82b5
+    );
 
-    bottom: -9px;
+    box-shadow:inset 0 -12px 15px rgba(0,0,0,.12);
 }
 
-.cream1 {
-    left: 35px;
+.cakeBottom{
+    position:absolute;
+    bottom:0;
+
+    width:230px;
+    height:18px;
+
+    border-radius:0 0 25px 25px;
+
+    background:#ff65a5;
 }
 
-.cream2 {
-    left: 94px;
+.cakeLine{
+    position:absolute;
+
+    width:170px;
+    height:5px;
+
+    left:26px;
+    top:35px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.7);
 }
 
-.cream3 {
-    right: 28px;
+.line2{
+    width:130px;
+    left:48px;
+    top:60px;
 }
 
-/* =====================================================
-   CAKE BODY
-===================================================== */
+.cream{
+    position:absolute;
 
-.cakeBody {
-    position: absolute;
+    width:42px;
+    height:23px;
 
-    top: 35px;
+    bottom:-9px;
 
-    width: 230px;
-    height: 95px;
+    border-radius:50%;
 
-    background:
-        linear-gradient(
-            90deg,
-            #ff8fbd,
-            #ffb1d1,
-            #ff82b5
-        );
-
-    border-radius:
-        0 0 20px 20px;
-
-    border: 4px solid white;
-
-    box-shadow:
-        inset 0 -12px 15px rgba(0,0,0,.12),
-        0 12px 15px rgba(0,0,0,.2);
+    background:white;
 }
 
-.cakeBottom {
-    position: absolute;
+.cream1{left:35px}
+.cream2{left:94px}
+.cream3{right:28px}
 
-    bottom: 0;
-
-    width: 230px;
-    height: 18px;
-
-    background: #ff65a5;
-
-    border-radius:
-        0 0 25px 25px;
-
-    z-index: 5;
+.decoration{
+    position:absolute;
+    color:white;
+    font-size:19px;
 }
 
-/* =====================================================
-   CAKE DECORATION
-===================================================== */
-
-.cakeLine {
-    position: absolute;
-
-    width: 170px;
-    height: 5px;
-
-    background:
-        rgba(255,255,255,.7);
-
-    border-radius: 10px;
-
-    left: 26px;
-    top: 35px;
+.d1{
+    left:30px;
+    top:10px;
 }
 
-.line2 {
-    top: 60px;
-
-    width: 130px;
-
-    left: 48px;
+.d2{
+    left:105px;
+    top:47px;
 }
 
-.decoration {
-    position: absolute;
-
-    color: white;
-
-    font-size: 19px;
+.d3{
+    right:30px;
+    top:15px;
 }
 
-.d1 {
-    left: 30px;
-    top: 10px;
+/* ================= CANDLE ================= */
+
+.candle{
+    position:absolute;
+
+    z-index:10;
+
+    width:24px;
+    height:72px;
+
+    bottom:145px;
+
+    border-radius:6px;
+
+    background:repeating-linear-gradient(
+        -45deg,
+        #fff,
+        #fff 7px,
+        #ff77ad 7px,
+        #ff77ad 14px
+    );
+
+    border:2px solid rgba(255,255,255,.8);
 }
 
-.d2 {
-    left: 105px;
-    top: 47px;
+/* ================= FLAME ================= */
+
+.flame{
+    position:absolute;
+
+    z-index:20;
+
+    bottom:213px;
+
+    width:27px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:#ff9d00;
+
+    filter:drop-shadow(0 0 12px #ff9d00);
+
+    animation:flame .12s infinite alternate;
 }
 
-.d3 {
-    right: 30px;
-    top: 15px;
+.flame::before{
+    content:"";
+
+    position:absolute;
+
+    width:18px;
+    height:30px;
+
+    left:4px;
+    bottom:2px;
+
+    border-radius:50%;
+
+    background:#fff4a3;
 }
 
-.cherry {
-    position: absolute;
+.flameInner{
+    position:absolute;
 
-    font-size: 22px;
+    width:8px;
+    height:17px;
 
-    top: -12px;
+    left:9px;
+    bottom:3px;
+
+    border-radius:50%;
+
+    background:white;
 }
 
-.cherry1 {
-    left: 25px;
-}
-
-.cherry2 {
-    right: 25px;
-}
-
-/* =====================================================
-   CANDLE
-===================================================== */
-
-.candle {
-    position: absolute;
-
-    z-index: 10;
-
-    width: 24px;
-    height: 72px;
-
-    bottom: 145px;
-
-    background:
-        repeating-linear-gradient(
-            -45deg,
-            #fff,
-            #fff 7px,
-            #ff77ad 7px,
-            #ff77ad 14px
-        );
-
-    border-radius: 6px;
-
-    border:
-        2px solid rgba(255,255,255,.8);
-
-    box-shadow:
-        0 5px 10px rgba(0,0,0,.25);
-}
-
-/* =====================================================
-   FLAME
-===================================================== */
-
-.flame {
-    position: absolute;
-
-    z-index: 20;
-
-    bottom: 213px;
-
-    width: 27px;
-    height: 45px;
-
-    background: #ff9d00;
-
-    border-radius: 50%;
-
-    transform-origin: bottom;
-
-    filter:
-        drop-shadow(
-            0 0 12px #ff9d00
-        );
-
-    animation:
-        flameMove .12s infinite alternate;
-}
-
-.flame::before {
-    content: "";
-
-    position: absolute;
-
-    width: 18px;
-    height: 30px;
-
-    background: #fff4a3;
-
-    border-radius: 50%;
-
-    left: 4px;
-    bottom: 2px;
-}
-
-.flameInner {
-    position: absolute;
-
-    width: 8px;
-    height: 17px;
-
-    background: white;
-
-    border-radius: 50%;
-
-    left: 9px;
-    bottom: 3px;
-}
-
-@keyframes flameMove {
-    from {
-        transform:
-            rotate(-5deg)
-            scaleY(.95);
+@keyframes flame{
+    from{
+        transform:rotate(-5deg) scaleY(.95);
     }
-
-    to {
-        transform:
-            rotate(5deg)
-            scaleY(1.08);
+    to{
+        transform:rotate(5deg) scaleY(1.08);
     }
 }
 
-/* =====================================================
-   WISH
-===================================================== */
+.flame.off{
+    animation:flameOff .5s forwards;
+}
 
-.wishText {
-    color: #eee;
+@keyframes flameOff{
+    100%{
+        opacity:0;
+        transform:scale(0);
+    }
+}
 
-    line-height: 1.7;
+/* ================= WISH ================= */
 
-    font-size: 16px;
+.wishText{
+    margin:5px 0 20px;
 
-    margin: 5px 0 20px;
+    color:#eee;
+    line-height:1.7;
 }
 
 .blowBtn,
-.continueBtn {
-    border: none;
+.continueBtn{
+    padding:14px 27px;
 
-    padding: 14px 27px;
+    border:none;
+    border-radius:30px;
 
-    border-radius: 30px;
+    color:white;
+    font-weight:bold;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff75b5,
-            #ff4f91
-        );
+    background:linear-gradient(135deg,#ff75b5,#ff4f91);
 
-    color: white;
+    cursor:pointer;
 
-    font-weight: bold;
+    box-shadow:0 8px 25px rgba(255,80,150,.35);
 
-    font-size: 15px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(255,80,150,.35);
-
-    transition: .3s;
+    transition:.3s;
 }
 
 .blowBtn:hover,
-.continueBtn:hover {
-    transform:
-        translateY(-3px)
-        scale(1.03);
+.continueBtn:hover{
+    transform:translateY(-3px) scale(1.03);
 }
 
-/* =====================================================
-   AFTER BLOW
-===================================================== */
+.afterBlow{
+    display:none;
 
-.afterBlow {
-    display: none;
-
-    animation:
-        revealWish 1s ease;
+    animation:reveal 1s ease;
 }
 
-@keyframes revealWish {
-    from {
-        opacity: 0;
-        transform: scale(.7);
+@keyframes reveal{
+    from{
+        opacity:0;
+        transform:scale(.7);
     }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
+    to{
+        opacity:1;
+        transform:scale(1);
     }
 }
 
-.afterBlow h2 {
-    color: white;
-
-    margin: 10px 0;
+.sparkleBig{
+    font-size:50px;
+    animation:sparkle 1.5s infinite alternate;
 }
 
-.afterBlow p {
-    color: #ddd;
-
-    line-height: 1.7;
-}
-
-.sparkleBig {
-    font-size: 50px;
-
-    animation:
-        sparkleRotate 1.5s infinite alternate;
-}
-
-@keyframes sparkleRotate {
-    from {
-        transform:
-            scale(.8)
-            rotate(-10deg);
-    }
-
-    to {
-        transform:
-            scale(1.2)
-            rotate(10deg);
+@keyframes sparkle{
+    to{
+        transform:scale(1.2) rotate(10deg);
     }
 }
 
-/* =====================================================
-   FLAME OFF
-===================================================== */
-
-.flame.off {
-    animation:
-        flameOff .5s forwards;
+.afterBlow h2{
+    margin:10px 0;
 }
 
-@keyframes flameOff {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    60% {
-        opacity: .5;
-        transform: scale(1.4,.5);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(0);
-    }
+.afterBlow p{
+    color:#ddd;
+    line-height:1.7;
 }
 
-/* =====================================================
-   SMOKE
-===================================================== */
+/* ================= SMOKE ================= */
 
-.smoke {
-    position: absolute;
+.smoke{
+    position:absolute;
 
-    z-index: 19;
+    bottom:245px;
 
-    bottom: 245px;
+    width:12px;
+    height:12px;
 
-    width: 12px;
-    height: 12px;
+    border-radius:50%;
 
-    border-radius: 50%;
+    background:rgba(255,255,255,.5);
 
-    background:
-        rgba(255,255,255,.5);
-
-    animation:
-        smokeUp 2s ease-out forwards;
+    animation:smoke 2s ease-out forwards;
 }
 
-@keyframes smokeUp {
-    0% {
-        opacity: .7;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translateY(-70px)
-            scale(3);
+@keyframes smoke{
+    to{
+        opacity:0;
+        transform:translateY(-70px) scale(3);
     }
 }
 
-/* =====================================================
-   UCAPAN
-===================================================== */
+/* ================= MESSAGE ================= */
 
-.messageCard {
+#messageCard{
+    display:none;
 
-    display: none;
+    width:min(700px,calc(100% - 30px));
 
-    width:
-        min(
-            700px,
-            calc(100% - 30px)
-        );
+    margin:80px auto 40px;
 
-    margin: 80px auto 40px;
+    padding:45px 35px;
 
-    padding: 45px 35px;
+    border-radius:30px;
 
-    border-radius: 30px;
+    border:1px solid rgba(255,255,255,.13);
 
-    background:
-        rgba(255,255,255,.08);
+    background:rgba(255,255,255,.08);
 
-    border:
-        1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(20px);
 
-    backdrop-filter: blur(20px);
+    text-align:center;
 
-    text-align: center;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.3);
-
-    animation:
-        messageIn 1s ease;
+    animation:messageIn 1s ease;
 }
 
-@keyframes messageIn {
-    from {
-        opacity: 0;
-        transform:
-            translateY(50px)
-            scale(.95);
+@keyframes messageIn{
+    from{
+        opacity:0;
+        transform:translateY(50px);
     }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
-.messageEmoji {
-    font-size: 55px;
-
-    margin-bottom: 15px;
+.messageEmoji{
+    font-size:55px;
+    margin-bottom:15px;
 }
 
-.messageCard h2 {
-    font-size: 30px;
-
-    margin-bottom: 25px;
+.messageCard h2{
+    font-size:30px;
+    margin-bottom:25px;
 }
 
-.messageText {
-    color: #e4dce8;
-
-    line-height: 1.9;
-
-    font-size: 16px;
+.messageText{
+    color:#e4dce8;
+    line-height:1.9;
+    font-size:16px;
 }
 
-.messageText p {
-    margin-bottom: 15px;
+.messageText p{
+    margin-bottom:15px;
 }
 
-/* =====================================================
-   SLIDE FROM YOUR FRIEND
-===================================================== */
+/* ================= FROM YOUR FRIEND ================= */
 
-.friendSlide {
+#friendSlide{
+    min-height:70vh;
 
-    min-height: 70vh;
+    width:min(700px,calc(100% - 30px));
 
-    width:
-        min(
-            700px,
-            calc(100% - 30px)
-        );
+    margin:0 auto 80px;
 
-    margin: 0 auto 80px;
+    display:none;
 
-    display: none;
+    align-items:center;
+    justify-content:center;
 
-    align-items: center;
-    justify-content: center;
+    text-align:center;
 
-    text-align: center;
+    position:relative;
+    overflow:hidden;
 
-    position: relative;
+    border-radius:35px;
 
-    overflow: hidden;
-
-    border-radius: 35px;
+    border:1px solid rgba(255,255,255,.13);
 
     background:
         linear-gradient(
@@ -1239,300 +907,250 @@ body {
             rgba(130,90,255,.14)
         );
 
-    border:
-        1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(20px);
 
-    backdrop-filter: blur(20px);
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.3);
-
-    animation:
-        friendSlideIn 1.2s ease;
+    animation:friendIn 1.2s ease;
 }
 
-@keyframes friendSlideIn {
+@keyframes friendIn{
+    from{
+        opacity:0;
+        transform:translateY(100px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-    from {
-        opacity: 0;
+.friendContent{
+    padding:50px 25px;
+    position:relative;
+    z-index:2;
+}
+
+.friendStars{
+    font-size:30px;
+    letter-spacing:12px;
+    margin-bottom:20px;
+
+    animation:starMove 2s infinite alternate;
+}
+
+@keyframes starMove{
+    to{
+        transform:scale(1.1);
+    }
+}
+
+.friendHeart{
+    font-size:65px;
+    margin-bottom:15px;
+
+    animation:heart 1.4s infinite;
+}
+
+@keyframes heart{
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+.friendContent h2{
+    font-size:38px;
+    margin-bottom:15px;
+
+    background:linear-gradient(
+        90deg,
+        #ff9dce,
+        #c6a2ff,
+        #ff9dce
+    );
+
+    background-size:200%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:textGradient 3s linear infinite;
+}
+
+@keyframes textGradient{
+    to{
+        background-position:200%;
+    }
+}
+
+.friendContent p{
+    color:#ddd;
+    line-height:1.8;
+}
+
+.smallText{
+    margin-top:30px;
+    font-size:13px;
+    color:#aaa !important;
+}
+
+/* ================= BUBBLES ================= */
+
+.bubble{
+    position:absolute;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+    animation:bubble 6s infinite alternate;
+}
+
+.b1{
+    width:150px;
+    height:150px;
+    left:-60px;
+    top:-50px;
+}
+
+.b2{
+    width:200px;
+    height:200px;
+    right:-80px;
+    bottom:-70px;
+}
+
+.b3{
+    width:70px;
+    height:70px;
+    right:15%;
+    top:10%;
+}
+
+@keyframes bubble{
+    to{
+        transform:translate(20px,-20px);
+    }
+}
+
+/* ================= CONFETTI ================= */
+
+.confetti{
+    position:fixed;
+
+    top:-30px;
+
+    z-index:900;
+
+    pointer-events:none;
+
+    animation:fall 4s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        top:110vh;
+
         transform:
-            translateY(100px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
+            rotate(720deg)
+            translateX(100px);
     }
 }
 
-.friendContent {
-    padding: 50px 25px;
-    position: relative;
-    z-index: 2;
-}
+/* ================= MOBILE ================= */
 
-.friendStars {
-    font-size: 30px;
+@media(max-width:500px){
 
-    margin-bottom: 20px;
-
-    letter-spacing: 12px;
-
-    animation:
-        starFriend 2s infinite alternate;
-}
-
-@keyframes starFriend {
-
-    from {
-        transform: scale(.9);
-        opacity: .6;
+    .nameBox{
+        padding:35px 22px;
     }
 
-    to {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-}
-
-.friendHeart {
-    font-size: 65px;
-
-    margin-bottom: 15px;
-
-    animation:
-        heartBeat 1.4s infinite;
-}
-
-@keyframes heartBeat {
-
-    0%,100% {
-        transform: scale(1);
+    .nameBox h1{
+        font-size:27px;
     }
 
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-.friendContent h2 {
-    font-size: 38px;
-
-    margin-bottom: 15px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff9dce,
-            #c6a2ff,
-            #ff9dce
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    background-size: 200%;
-
-    animation:
-        textGradient 3s linear infinite;
-}
-
-@keyframes textGradient {
-
-    from {
-        background-position: 0%;
+    .gameCard{
+        padding:22px 15px;
     }
 
-    to {
-        background-position: 200%;
-    }
-}
-
-.friendContent p {
-    color: #ddd;
-
-    line-height: 1.8;
-
-    font-size: 16px;
-}
-
-.friendContent .smallText {
-    margin-top: 30px;
-
-    font-size: 13px;
-
-    color: #aaa;
-}
-
-/* DECORATION FRIEND */
-
-.friendBubble {
-    position: absolute;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.05);
-
-    animation:
-        bubbleFloat 6s infinite alternate;
-}
-
-.b1 {
-    width: 150px;
-    height: 150px;
-
-    left: -60px;
-    top: -50px;
-}
-
-.b2 {
-    width: 200px;
-    height: 200px;
-
-    right: -80px;
-    bottom: -70px;
-
-    animation-delay: 1s;
-}
-
-.b3 {
-    width: 70px;
-    height: 70px;
-
-    right: 15%;
-    top: 10%;
-
-    animation-delay: 2s;
-}
-
-@keyframes bubbleFloat {
-
-    from {
-        transform:
-            translate(0,0);
+    .gameTitle{
+        font-size:24px;
     }
 
-    to {
-        transform:
-            translate(20px,-20px);
-    }
-}
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:500px) {
-
-    .nameBox {
-        padding: 35px 22px;
-    }
-
-    .nameBox h1 {
-        font-size: 27px;
-    }
-
-    .gameCard {
-        padding: 22px 15px;
-    }
-
-    .gameTitle {
-        font-size: 24px;
-    }
-
-    .gameGrid {
-        gap: 8px;
+    .gameGrid{
+        gap:8px;
     }
 
     .card.flipped,
-    .card.matched {
-        font-size: 25px;
+    .card.matched{
+        font-size:25px;
     }
 
-    .cakeScene {
-        transform: scale(.86);
-
-        margin-top: -5px;
-        margin-bottom: 0;
+    .cakeScene{
+        transform:scale(.86);
+        margin-top:-5px;
+        margin-bottom:0;
     }
 
-    .cakeTitle h2 {
-        font-size: 25px;
+    .cakeTitle h2{
+        font-size:25px;
     }
 
-    .wishText {
-        font-size: 14px;
+    .messageCard{
+        padding:35px 22px;
     }
 
-    .messageCard {
-        padding: 35px 22px;
+    .messageCard h2{
+        font-size:25px;
     }
 
-    .messageCard h2 {
-        font-size: 25px;
+    .messageText{
+        font-size:14px;
     }
 
-    .messageText {
-        font-size: 14px;
+    #friendSlide{
+        min-height:65vh;
     }
 
-    .friendSlide {
-        min-height: 65vh;
+    .friendContent h2{
+        font-size:30px;
     }
 
-    .friendContent h2 {
-        font-size: 30px;
+    .friendContent p{
+        font-size:14px;
     }
 
-    .friendContent p {
-        font-size: 14px;
-    }
-
-    .friendHeart {
-        font-size: 55px;
+    .friendHeart{
+        font-size:55px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
+<!-- BACKGROUND -->
 
-<div class="bg-circle c1"></div>
-<div class="bg-circle c2"></div>
-<div class="bg-circle c3"></div>
+<div class="bg bg1"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
 
-<div class="star s1">✦</div>
-<div class="star s2">✧</div>
-<div class="star s3">✦</div>
-<div class="star s4">✧</div>
-<div class="star s5">✦</div>
-<div class="star s6">✧</div>
+<div class="star star1">✦</div>
+<div class="star star2">✧</div>
+<div class="star star3">✦</div>
+<div class="star star4">✧</div>
+<div class="star star5">✦</div>
+<div class="star star6">✧</div>
 
 
-<!-- =====================================================
-     MUSIK MP3
-===================================================== -->
+<!-- ================= AUDIO ================= -->
 
-<audio
-    id="bgMusic"
-    loop
-    preload="auto"
->
+<audio id="bgMusic" loop preload="auto">
     <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 
-<!-- =====================================================
-     HALAMAN NAMA
-===================================================== -->
+<!-- ================= NAMA ================= -->
 
 <div id="namePage">
 
@@ -1575,13 +1193,11 @@ body {
 </div>
 
 
-<!-- =====================================================
-     BROWSER BAR
-===================================================== -->
+<!-- ================= BROWSER ================= -->
 
 <div class="browser">
 
-    <div class="searchIcon">
+    <div>
         ⌕
     </div>
 
@@ -1589,22 +1205,19 @@ body {
         birthday-surprise.id
     </div>
 
-    <div class="refresh">
+    <div>
         ↻
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     MUSIC BUTTON
-===================================================== -->
+<!-- ================= MUSIC BUTTON ================= -->
 
 <button
     id="musicBtn"
     class="musicBtn"
     onclick="toggleMusic()"
-    title="Musik"
 >
     🎵
 </button>
@@ -1612,10 +1225,7 @@ body {
 
 <main>
 
-
-<!-- =====================================================
-     GAME
-===================================================== -->
+<!-- ================= GAME ================= -->
 
 <section id="gameSection">
 
@@ -1630,21 +1240,19 @@ body {
         </p>
 
         <div
-            class="gameGrid"
             id="gameGrid"
+            class="gameGrid"
         ></div>
 
         <div class="gameInfo">
-
             <span id="moves">
                 Percobaan: 0
             </span>
-
         </div>
 
         <button
-            class="nextBtn"
             id="nextBtn"
+            class="nextBtn"
         >
             🎂 Lanjut ke Kue
         </button>
@@ -1654,14 +1262,9 @@ body {
 </section>
 
 
-<!-- =====================================================
-     KUE
-===================================================== -->
+<!-- ================= CAKE ================= -->
 
-<section
-    class="cakeSection"
-    id="cakeSection"
->
+<section id="cakeSection">
 
     <div class="cakeTitle">
 
@@ -1685,11 +1288,11 @@ body {
         <div class="cakeGlow"></div>
 
 
-        <!-- API -->
+        <!-- API LILIN -->
 
         <div
-            class="flame"
             id="flame"
+            class="flame"
         >
             <div class="flameInner"></div>
         </div>
@@ -1710,21 +1313,11 @@ body {
                 <div class="cream cream2"></div>
                 <div class="cream cream3"></div>
 
-                <div class="cherry cherry1">
-                    🍒
-                </div>
-
-                <div class="cherry cherry2">
-                    🍓
-                </div>
-
             </div>
-
 
             <div class="cakeBody">
 
                 <div class="cakeLine"></div>
-
                 <div class="cakeLine line2"></div>
 
                 <div class="decoration d1">
@@ -1740,7 +1333,6 @@ body {
                 </div>
 
             </div>
-
 
             <div class="cakeBottom"></div>
 
@@ -1761,8 +1353,8 @@ body {
 
 
     <button
-        class="blowBtn"
         id="blowBtn"
+        class="blowBtn"
         onclick="blowCandle()"
     >
         💨 Tiup Lilin
@@ -1770,8 +1362,8 @@ body {
 
 
     <div
-        class="afterBlow"
         id="afterBlow"
+        class="afterBlow"
     >
 
         <div class="sparkleBig">
@@ -1801,19 +1393,13 @@ body {
 </section>
 
 
-<!-- =====================================================
-     UCAPAN
-===================================================== -->
+<!-- ================= UCAPAN ================= -->
 
-<section
-    class="messageCard"
-    id="messageCard"
->
+<section id="messageCard">
 
     <div class="messageEmoji">
         🧸🎂
     </div>
-
 
     <h2>
         Happy Birthday
@@ -1858,10 +1444,8 @@ body {
                 <span id="nameMessage">
                     kamu
                 </span>
-                !
+                ! 🎂🎉
             </strong>
-
-            🎂🎉
         </p>
 
     </div>
@@ -1869,18 +1453,13 @@ body {
 </section>
 
 
-<!-- =====================================================
-     SLIDE TERAKHIR
-===================================================== -->
+<!-- ================= FROM YOUR FRIEND ================= -->
 
-<section
-    class="friendSlide"
-    id="friendSlide"
->
+<section id="friendSlide">
 
-    <div class="friendBubble b1"></div>
-    <div class="friendBubble b2"></div>
-    <div class="friendBubble b3"></div>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
 
 
     <div class="friendContent">
@@ -1889,22 +1468,18 @@ body {
             ✦ ✧ ✦
         </div>
 
-
         <div class="friendHeart">
             💌
         </div>
-
 
         <h2>
             From Your Friend
         </h2>
 
-
         <p>
             Sebuah ucapan kecil<br>
-            untuk Sahabat Terbaik.
+            untuk seseorang yang spesial.
         </p>
-
 
         <p class="smallText">
             Made with 💖 just for you
@@ -1925,17 +1500,25 @@ body {
 
 let userName = "";
 
-const bgMusic =
-    document.getElementById("bgMusic");
+let firstCard = null;
+let secondCard = null;
+
+let lockBoard = false;
+
+let matched = 0;
+let moves = 0;
 
 let musicPlaying = false;
 
+const bgMusic =
+    document.getElementById("bgMusic");
+
 
 /* =====================================================
-   MULAI SURPRISE
+   MULAI
 ===================================================== */
 
-function startSurprise() {
+function startSurprise(){
 
     const input =
         document.getElementById("nameInput");
@@ -1947,7 +1530,7 @@ function startSurprise() {
         input.value.trim();
 
 
-    if (!name) {
+    if(!name){
 
         error.style.display = "block";
 
@@ -1961,8 +1544,6 @@ function startSurprise() {
     userName = name;
 
 
-    /* Nama */
-
     document.getElementById("nameTitle")
         .textContent = userName;
 
@@ -1970,13 +1551,11 @@ function startSurprise() {
         .textContent = userName;
 
 
-    /* Tutup halaman awal */
-
     document.getElementById("namePage")
         .style.opacity = "0";
 
 
-    setTimeout(() => {
+    setTimeout(function(){
 
         document.getElementById("namePage")
             .style.display = "none";
@@ -1984,50 +1563,7 @@ function startSurprise() {
     },800);
 
 
-    /* Mulai game */
-
     createGame();
-
-
-    /* =================================================
-       MUSIK MP3
-    ================================================= */
-
-    bgMusic.volume = 0.55;
-
-    bgMusic.play()
-        .then(() => {
-
-            musicPlaying = true;
-
-            const musicBtn =
-                document.getElementById("musicBtn");
-
-            musicBtn.style.display = "block";
-
-            musicBtn.classList.add("playing");
-
-            musicBtn.innerHTML = "🎵";
-
-        })
-        .catch(() => {
-
-            /*
-              Jika browser belum mengizinkan,
-              tombol musik tetap bisa digunakan.
-            */
-
-            document.getElementById("musicBtn")
-                .style.display = "block";
-
-        });
-
-
-    setTimeout(() => {
-
-        confetti();
-
-    },700);
 
 }
 
@@ -2040,9 +1576,9 @@ document
 .getElementById("nameInput")
 .addEventListener(
     "keydown",
-    function(e) {
+    function(e){
 
-        if (e.key === "Enter") {
+        if(e.key === "Enter"){
 
             startSurprise();
 
@@ -2053,42 +1589,7 @@ document
 
 
 /* =====================================================
-   MUSIC BUTTON
-===================================================== */
-
-function toggleMusic() {
-
-    const button =
-        document.getElementById("musicBtn");
-
-
-    if (bgMusic.paused) {
-
-        bgMusic.play();
-
-        musicPlaying = true;
-
-        button.innerHTML = "🎵";
-
-        button.classList.add("playing");
-
-    } else {
-
-        bgMusic.pause();
-
-        musicPlaying = false;
-
-        button.innerHTML = "🔇";
-
-        button.classList.remove("playing");
-
-    }
-
-}
-
-
-/* =====================================================
-   MEMORY GAME
+   GAME DATA
 ===================================================== */
 
 const emojis = [
@@ -2103,53 +1604,57 @@ const emojis = [
 ];
 
 
-let firstCard = null;
-let secondCard = null;
+/* =====================================================
+   SHUFFLE
+===================================================== */
 
-let lockBoard = false;
-
-let matched = 0;
-
-let moves = 0;
-
-
-function shuffle(array) {
+function shuffle(array){
 
     return array.sort(
-        () => Math.random() - 0.5
+        function(){
+            return Math.random() - .5;
+        }
     );
 
 }
 
 
-function createGame() {
+/* =====================================================
+   CREATE GAME
+===================================================== */
+
+function createGame(){
 
     const grid =
         document.getElementById("gameGrid");
 
     grid.innerHTML = "";
 
-    const shuffled =
+    const cards =
         shuffle([...emojis]);
 
 
-    shuffled.forEach((emoji,index) => {
+    cards.forEach(function(emoji,index){
 
         const card =
             document.createElement("div");
 
         card.className = "card";
 
-        card.dataset.emoji =
-            emoji;
+        card.dataset.emoji = emoji;
 
-        card.dataset.index =
-            index;
+        card.dataset.index = index;
+
 
         card.addEventListener(
             "click",
-            () => flipCard(card)
+            function(){
+
+                flipCard(card);
+
+            }
         );
+
 
         grid.appendChild(card);
 
@@ -2158,13 +1663,17 @@ function createGame() {
 }
 
 
-function flipCard(card) {
+/* =====================================================
+   FLIP CARD
+===================================================== */
 
-    if (
+function flipCard(card){
+
+    if(
         lockBoard ||
         card === firstCard ||
         card.classList.contains("matched")
-    ) {
+    ){
 
         return;
 
@@ -2177,7 +1686,7 @@ function flipCard(card) {
         card.dataset.emoji;
 
 
-    if (!firstCard) {
+    if(!firstCard){
 
         firstCard = card;
 
@@ -2201,14 +1710,18 @@ function flipCard(card) {
 }
 
 
-function checkMatch() {
+/* =====================================================
+   CHECK MATCH
+===================================================== */
+
+function checkMatch(){
 
     const match =
         firstCard.dataset.emoji ===
         secondCard.dataset.emoji;
 
 
-    if (match) {
+    if(match){
 
         firstCard.classList.add("matched");
 
@@ -2219,50 +1732,61 @@ function checkMatch() {
         resetCards();
 
 
-        if (matched === emojis.length) {
+        if(matched === emojis.length){
 
-            setTimeout(() => {
+            setTimeout(function(){
+
+                /* ==========================
+                   GAME SELESAI
+                   MUSIK MULAI DI SINI
+                ========================== */
+
+                startMusic();
+
 
                 const nextBtn =
                     document.getElementById("nextBtn");
 
+
                 nextBtn.style.display =
                     "inline-block";
+
 
                 nextBtn.innerHTML =
                     "🎂 Lanjut ke Kue";
 
+
                 nextBtn.onclick =
-                    function() {
+                    function(){
 
                         showCake();
 
                     };
 
+
                 confetti();
+
 
             },500);
 
         }
 
-    } else {
+
+    }else{
 
         lockBoard = true;
 
 
-        setTimeout(() => {
+        setTimeout(function(){
 
-            firstCard.classList.remove(
-                "flipped"
-            );
+            firstCard.classList.remove("flipped");
 
-            secondCard.classList.remove(
-                "flipped"
-            );
+            secondCard.classList.remove("flipped");
 
             firstCard.textContent = "";
 
             secondCard.textContent = "";
+
 
             resetCards();
 
@@ -2273,7 +1797,11 @@ function checkMatch() {
 }
 
 
-function resetCards() {
+/* =====================================================
+   RESET CARD
+===================================================== */
+
+function resetCards(){
 
     firstCard = null;
 
@@ -2285,10 +1813,99 @@ function resetCards() {
 
 
 /* =====================================================
+   MUSIK DIMULAI SETELAH GAME
+===================================================== */
+
+function startMusic(){
+
+    bgMusic.volume = 0.55;
+
+    bgMusic.currentTime = 0;
+
+
+    bgMusic.play()
+    .then(function(){
+
+        musicPlaying = true;
+
+
+        const musicBtn =
+            document.getElementById("musicBtn");
+
+
+        musicBtn.style.display =
+            "block";
+
+
+        musicBtn.classList.add(
+            "playing"
+        );
+
+
+        musicBtn.innerHTML = "🎵";
+
+
+    })
+    .catch(function(){
+
+        /*
+        Jika browser tidak langsung
+        memainkan audio, tombol musik
+        tetap ditampilkan.
+        */
+
+        const musicBtn =
+            document.getElementById("musicBtn");
+
+
+        musicBtn.style.display =
+            "block";
+
+    });
+
+}
+
+
+/* =====================================================
+   TOGGLE MUSIC
+===================================================== */
+
+function toggleMusic(){
+
+    const button =
+        document.getElementById("musicBtn");
+
+
+    if(bgMusic.paused){
+
+        bgMusic.play();
+
+        musicPlaying = true;
+
+        button.innerHTML = "🎵";
+
+        button.classList.add("playing");
+
+    }else{
+
+        bgMusic.pause();
+
+        musicPlaying = false;
+
+        button.innerHTML = "🔇";
+
+        button.classList.remove("playing");
+
+    }
+
+}
+
+
+/* =====================================================
    SHOW CAKE
 ===================================================== */
 
-function showCake() {
+function showCake(){
 
     document.getElementById("gameSection")
         .style.display = "none";
@@ -2302,11 +1919,8 @@ function showCake() {
 
 
     window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
+        top:0,
+        behavior:"smooth"
     });
 
 
@@ -2319,7 +1933,7 @@ function showCake() {
    TIUP LILIN
 ===================================================== */
 
-function blowCandle() {
+function blowCandle(){
 
     const flame =
         document.getElementById("flame");
@@ -2328,16 +1942,12 @@ function blowCandle() {
         document.getElementById("blowBtn");
 
 
-    if (
-        flame.classList.contains("off")
-    ) {
+    if(flame.classList.contains("off")){
 
         return;
 
     }
 
-
-    /* Padamkan api */
 
     flame.classList.add("off");
 
@@ -2348,32 +1958,28 @@ function blowCandle() {
         "✨ Harapan terkirim...";
 
 
-    /* Asap */
-
     createSmoke();
 
 
-    /* Confetti */
-
-    setTimeout(() => {
+    setTimeout(function(){
 
         confetti();
 
-    },500);
+    },400);
 
 
-    /* Tampilkan tombol ucapan */
-
-    setTimeout(() => {
+    setTimeout(function(){
 
         document.querySelector(".wishText")
             .style.display = "none";
+
 
         button.style.display = "none";
 
 
         document.getElementById("afterBlow")
             .style.display = "block";
+
 
     },900);
 
@@ -2384,37 +1990,33 @@ function blowCandle() {
    ASAP
 ===================================================== */
 
-function createSmoke() {
+function createSmoke(){
 
     const scene =
         document.querySelector(".cakeScene");
 
 
-    for (
-        let i = 0;
-        i < 7;
-        i++
-    ) {
+    for(let i=0;i<7;i++){
 
         const smoke =
             document.createElement("div");
 
-        smoke.className =
-            "smoke";
+
+        smoke.className = "smoke";
 
 
         smoke.style.left =
-            (48 + Math.random() * 8) + "%";
+            (48 + Math.random()*8) + "%";
 
 
         smoke.style.animationDelay =
-            (i * .12) + "s";
+            (i*.12) + "s";
 
 
         scene.appendChild(smoke);
 
 
-        setTimeout(() => {
+        setTimeout(function(){
 
             smoke.remove();
 
@@ -2426,10 +2028,10 @@ function createSmoke() {
 
 
 /* =====================================================
-   UCAPAN
+   SHOW UCAPAN
 ===================================================== */
 
-function showBirthdayMessage() {
+function showBirthdayMessage(){
 
     document.getElementById("cakeSection")
         .style.display = "none";
@@ -2443,9 +2045,7 @@ function showBirthdayMessage() {
 
 
     message.scrollIntoView({
-
-        behavior: "smooth"
-
+        behavior:"smooth"
     });
 
 
@@ -2454,11 +2054,11 @@ function showBirthdayMessage() {
 
     /*
        Setelah 4 detik,
-       slide "From Your Friend"
+       slide FROM YOUR FRIEND
        muncul di bawah ucapan.
     */
 
-    setTimeout(() => {
+    setTimeout(function(){
 
         const friend =
             document.getElementById("friendSlide");
@@ -2467,13 +2067,12 @@ function showBirthdayMessage() {
         friend.style.display = "flex";
 
 
-        setTimeout(() => {
+        setTimeout(function(){
 
             friend.scrollIntoView({
-
-                behavior: "smooth"
-
+                behavior:"smooth"
             });
+
 
             confetti();
 
@@ -2489,7 +2088,7 @@ function showBirthdayMessage() {
    CONFETTI
 ===================================================== */
 
-function confetti() {
+function confetti(){
 
     const symbols = [
 
@@ -2504,11 +2103,7 @@ function confetti() {
     ];
 
 
-    for (
-        let i = 0;
-        i < 60;
-        i++
-    ) {
+    for(let i=0;i<60;i++){
 
         const item =
             document.createElement("div");
@@ -2528,25 +2123,25 @@ function confetti() {
 
 
         item.style.left =
-            Math.random() * 100 + "vw";
+            Math.random()*100 + "vw";
 
 
         item.style.fontSize =
-            (10 + Math.random() * 15) + "px";
+            (10 + Math.random()*15) + "px";
 
 
         item.style.animationDuration =
-            (2 + Math.random() * 3) + "s";
+            (2 + Math.random()*3) + "s";
 
 
         item.style.animationDelay =
-            Math.random() * .8 + "s";
+            Math.random()*.8 + "s";
 
 
         document.body.appendChild(item);
 
 
-        setTimeout(() => {
+        setTimeout(function(){
 
             item.remove();
 
